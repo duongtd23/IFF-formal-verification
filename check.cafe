@@ -1,0 +1,10 @@
+open PROPERTIES .
+  ops s1 s2 s3 : -> Sys .
+  ops a b : -> Prin .
+  ops r : -> Rand .
+  eq (a = intru) = false .
+  eq (b = intru) = false .
+  eq s1 = send1(init, a,b, r) .
+  eq s2 = send2(s1, a,a,b, r) .
+  red check(s2,a,b,b,r, enc(gk(a), r || b)) .
+close

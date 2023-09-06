@@ -1,0 +1,453 @@
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op s : -> Sys .
+  red inv7(init,a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = true .
+  red inv7(s,a,r) implies inv7(fkmsg1(s,r1,r2,r3),a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = false .
+  red inv7(s,a,r) implies inv7(fkmsg1(s,r1,r2,r3),a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Data .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = true .
+  red inv7(s,a,r) implies inv7(fkmsg2(s,r1,r2,r3),a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Data .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = false .
+  red inv7(s,a,r) implies inv7(fkmsg2(s,r1,r2,r3),a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (r2 \in knl(s)) = true .
+  eq a = intru .
+  red inv7(s,a,r) implies inv7(g2(s,r1,r2),a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (r2 \in knl(s)) = true .
+  eq (a = intru) = false .
+  eq r1 = gk(a) .
+  eq (gk(a) \in knl(s)) = true .
+  eq r2 = (r || intru) .
+  eq (intru \in knl(s)) = true .
+  eq (r \in knl(s)) = true .
+  eq (enc(gk(a),(r || intru)) \in knl(s)) = true .
+  red inv7(s,a,r) implies inv7(g2(s,r1,r2),a,r) .
+close
+
+--> true, use inv8 as a lemma
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (r2 \in knl(s)) = true .
+  eq (a = intru) = false .
+  eq r1 = gk(a) .
+  eq (gk(a) \in knl(s)) = true .
+  eq r2 = (r || intru) .
+  eq (intru \in knl(s)) = true .
+  eq (r \in knl(s)) = true .
+  eq (enc(gk(a),(r || intru)) \in knl(s)) = false .
+  red inv8(s,a) implies inv7(s,a,r) implies inv7(g2(s,r1,r2),a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (r2 \in knl(s)) = true .
+  eq (a = intru) = false .
+  eq r1 = gk(a) .
+  eq (gk(a) \in knl(s)) = true .
+  eq r2 = (r || intru) .
+  eq (intru \in knl(s)) = true .
+  eq (r \in knl(s)) = false .
+  red inv7(s,a,r) implies inv7(g2(s,r1,r2),a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (r2 \in knl(s)) = true .
+  eq (a = intru) = false .
+  eq r1 = gk(a) .
+  eq (gk(a) \in knl(s)) = true .
+  eq r2 = (r || intru) .
+  eq (intru \in knl(s)) = false .
+  red inv7(s,a,r) implies inv7(g2(s,r1,r2),a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (r2 \in knl(s)) = true .
+  eq (a = intru) = false .
+  eq r1 = gk(a) .
+  eq (gk(a) \in knl(s)) = true .
+  eq (r2 = (r || intru)) = false .
+  red inv7(s,a,r) implies inv7(g2(s,r1,r2),a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (r2 \in knl(s)) = true .
+  eq (a = intru) = false .
+  eq r1 = gk(a) .
+  eq (gk(a) \in knl(s)) = false .
+  red inv7(s,a,r) implies inv7(g2(s,r1,r2),a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (r2 \in knl(s)) = true .
+  eq (a = intru) = false .
+  eq (r1 = gk(a)) = false .
+  red inv7(s,a,r) implies inv7(g2(s,r1,r2),a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (r2 \in knl(s)) = false .
+  red inv7(s,a,r) implies inv7(g2(s,r1,r2),a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = false .
+  red inv7(s,a,r) implies inv7(g2(s,r1,r2),a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (enc(r1,r2) \in knl(s)) = true .
+  eq a = intru .
+  red inv7(s,a,r) implies inv7(g22(s,r1,r2),a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (enc(r1,r2) \in knl(s)) = true .
+  eq (a = intru) = false .
+  eq (enc(gk(a),(r || intru)) \in r2) = true .
+  eq (enc(gk(a),(r || intru)) \in knl(s)) = true .
+  red inv7(s,a,r) implies inv7(g22(s,r1,r2),a,r) .
+close
+
+--> true, use lm1 as a lemma
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (enc(r1,r2) \in knl(s)) = true .
+  eq (a = intru) = false .
+  eq (enc(gk(a),(r || intru)) \in r2) = true .
+  eq (enc(gk(a),(r || intru)) \in knl(s)) = false .
+  eq (r2 \in knl(s)) = true .
+  red lm1(enc(gk(a),(r || intru)),r2,knl(s)) implies inv7(s,a,r) implies inv7(g22(s,r1,r2),a,r) .
+close
+
+--> true, use inv5 as a lemma
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (enc(r1,r2) \in knl(s)) = true .
+  eq (a = intru) = false .
+  eq (enc(gk(a),(r || intru)) \in r2) = true .
+  eq (enc(gk(a),(r || intru)) \in knl(s)) = false .
+  eq (r2 \in knl(s)) = false .
+  red inv5(s,r1,gk(a),r2,(r || intru)) implies inv7(s,a,r) implies inv7(g22(s,r1,r2),a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (enc(r1,r2) \in knl(s)) = true .
+  eq (a = intru) = false .
+  eq (enc(gk(a),(r || intru)) \in r2) = false .
+  red inv7(s,a,r) implies inv7(g22(s,r1,r2),a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (enc(r1,r2) \in knl(s)) = false .
+  red inv7(s,a,r) implies inv7(g22(s,r1,r2),a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = false .
+  red inv7(s,a,r) implies inv7(g22(s,r1,r2),a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op s : -> Sys .
+  red inv7(s,a,r) implies inv7(gBasic(s,r1),a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Rand .
+  op s : -> Sys .
+  eq (r1 \in urand(s)) = true .
+  red inv7(s,a,r) implies inv7(gRand(s,r1),a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Rand .
+  op s : -> Sys .
+  eq (r1 \in urand(s)) = false .
+  red inv7(s,a,r) implies inv7(gRand(s,r1),a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in urand(s)) = true .
+  red inv7(s,a,r) implies inv7(send1(s,r1,r2,r3),a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in urand(s)) = false .
+  red inv7(s,a,r) implies inv7(send1(s,r1,r2,r3),a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = true .
+  eq r3 = intru .
+  eq (msg1(r1,r2,intru,r4) \in nw(s)) = true .
+  eq r = r4 .
+  eq a = intru .
+  red inv7(s,a,r) implies inv7(send2(s,r1,r2,r3,r4),a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = true .
+  eq r3 = intru .
+  eq (msg1(r1,r2,intru,r4) \in nw(s)) = true .
+  eq r = r4 .
+  eq (a = intru) = false .
+  red inv7(s,a,r) implies inv7(send2(s,r1,r2,r3,r4),a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = true .
+  eq r3 = intru .
+  eq (msg1(r1,r2,intru,r4) \in nw(s)) = true .
+  eq (r = r4) = false .
+  red inv7(s,a,r) implies inv7(send2(s,r1,r2,r3,r4),a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = true .
+  eq r3 = intru .
+  eq (msg1(r1,r2,intru,r4) \in nw(s)) = false .
+  red inv7(s,a,r) implies inv7(send2(s,r1,r2,r3,r4),a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = true .
+  eq (r3 = intru) = false .
+  red inv7(s,a,r) implies inv7(send2(s,r1,r2,r3,r4),a,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = false .
+  red inv7(s,a,r) implies inv7(send2(s,r1,r2,r3,r4),a,r) .
+close
+
+--> Time taken is 1917ms

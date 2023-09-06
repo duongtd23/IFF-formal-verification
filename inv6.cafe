@@ -1,0 +1,353 @@
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op a2 : -> Prin .
+  op b : -> Prin .
+  op r : -> Rand .
+  op s : -> Sys .
+  red inv6(init,a,b,a2,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op a2 : -> Prin .
+  op b : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = true .
+  eq a = r2 .
+  eq a2 = intru .
+  eq b = r1 .
+  eq r = r3 .
+  eq (r3 \in urand(s)) = true .
+  red inv6(s,a,b,a2,r) implies inv6(fkmsg1(s,r1,r2,r3),a,b,a2,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op a2 : -> Prin .
+  op b : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = true .
+  eq a = r2 .
+  eq a2 = intru .
+  eq b = r1 .
+  eq r = r3 .
+  eq (r3 \in urand(s)) = false .
+  eq (msg1(intru,r1,r2,r3) \in nw(s)) = true .
+  red inv6(s,a,b,a2,r) implies inv6(fkmsg1(s,r1,r2,r3),a,b,a2,r) .
+close
+
+--> true, use inv3 as a lemma
+open PROPERTIES .
+  op a : -> Prin .
+  op a2 : -> Prin .
+  op b : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = true .
+  eq a = r2 .
+  eq a2 = intru .
+  eq b = r1 .
+  eq r = r3 .
+  eq (r3 \in urand(s)) = false .
+  eq (msg1(intru,r1,r2,r3) \in nw(s)) = false .
+  red inv3(s,r3) implies inv6(s,a,b,a2,r) implies inv6(fkmsg1(s,r1,r2,r3),a,b,a2,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op a2 : -> Prin .
+  op b : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = true .
+  eq a = r2 .
+  eq a2 = intru .
+  eq b = r1 .
+  eq (r = r3) = false .
+  red inv6(s,a,b,a2,r) implies inv6(fkmsg1(s,r1,r2,r3),a,b,a2,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op a2 : -> Prin .
+  op b : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = true .
+  eq a = r2 .
+  eq a2 = intru .
+  eq (b = r1) = false .
+  red inv6(s,a,b,a2,r) implies inv6(fkmsg1(s,r1,r2,r3),a,b,a2,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op a2 : -> Prin .
+  op b : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = true .
+  eq a = r2 .
+  eq (a2 = intru) = false .
+  red inv6(s,a,b,a2,r) implies inv6(fkmsg1(s,r1,r2,r3),a,b,a2,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op a2 : -> Prin .
+  op b : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = true .
+  eq (a = r2) = false .
+  red inv6(s,a,b,a2,r) implies inv6(fkmsg1(s,r1,r2,r3),a,b,a2,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op a2 : -> Prin .
+  op b : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = false .
+  red inv6(s,a,b,a2,r) implies inv6(fkmsg1(s,r1,r2,r3),a,b,a2,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op a2 : -> Prin .
+  op b : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Data .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = true .
+  red inv6(s,a,b,a2,r) implies inv6(fkmsg2(s,r1,r2,r3),a,b,a2,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op a2 : -> Prin .
+  op b : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Data .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = false .
+  red inv6(s,a,b,a2,r) implies inv6(fkmsg2(s,r1,r2,r3),a,b,a2,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op a2 : -> Prin .
+  op b : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (r2 \in knl(s)) = true .
+  red inv6(s,a,b,a2,r) implies inv6(g2(s,r1,r2),a,b,a2,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op a2 : -> Prin .
+  op b : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (r2 \in knl(s)) = false .
+  red inv6(s,a,b,a2,r) implies inv6(g2(s,r1,r2),a,b,a2,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op a2 : -> Prin .
+  op b : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = false .
+  red inv6(s,a,b,a2,r) implies inv6(g2(s,r1,r2),a,b,a2,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op a2 : -> Prin .
+  op b : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (enc(r1,r2) \in knl(s)) = true .
+  red inv6(s,a,b,a2,r) implies inv6(g22(s,r1,r2),a,b,a2,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op a2 : -> Prin .
+  op b : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (enc(r1,r2) \in knl(s)) = false .
+  red inv6(s,a,b,a2,r) implies inv6(g22(s,r1,r2),a,b,a2,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op a2 : -> Prin .
+  op b : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = false .
+  red inv6(s,a,b,a2,r) implies inv6(g22(s,r1,r2),a,b,a2,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op a2 : -> Prin .
+  op b : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op s : -> Sys .
+  red inv6(s,a,b,a2,r) implies inv6(gBasic(s,r1),a,b,a2,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op a2 : -> Prin .
+  op b : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Rand .
+  op s : -> Sys .
+  eq (r1 \in urand(s)) = true .
+  red inv6(s,a,b,a2,r) implies inv6(gRand(s,r1),a,b,a2,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op a2 : -> Prin .
+  op b : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Rand .
+  op s : -> Sys .
+  eq (r1 \in urand(s)) = false .
+  red inv6(s,a,b,a2,r) implies inv6(gRand(s,r1),a,b,a2,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op a2 : -> Prin .
+  op b : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in urand(s)) = true .
+  red inv6(s,a,b,a2,r) implies inv6(send1(s,r1,r2,r3),a,b,a2,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op a2 : -> Prin .
+  op b : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in urand(s)) = false .
+  red inv6(s,a,b,a2,r) implies inv6(send1(s,r1,r2,r3),a,b,a2,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op a2 : -> Prin .
+  op b : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = true .
+  red inv6(s,a,b,a2,r) implies inv6(send2(s,r1,r2,r3,r4),a,b,a2,r) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op a2 : -> Prin .
+  op b : -> Prin .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = false .
+  red inv6(s,a,b,a2,r) implies inv6(send2(s,r1,r2,r3,r4),a,b,a2,r) .
+close
+
+--> Time taken is 159ms

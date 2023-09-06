@@ -1,0 +1,15 @@
+-- load iff.cafe .
+
+ipsgopen PROPERTIES .
+  inv inv5(S:Sys, K:Key, K2:Key, DL:DataL, DL2:DataL) .
+  inv inv8(S:Sys, A:Prin) .
+  inv lm1(D:Data,DL:DataL,DL2:DataL) .
+  generate inv7(S:Sys, A:Prin, R:Rand) induction on S:Sys .
+close
+
+set-output inv7.cafe .
+:save-proof .
+
+eof
+
+load inputs/input7.cafe .

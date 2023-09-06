@@ -1,0 +1,230 @@
+--> true
+open PROPERTIES .
+  op r : -> Rand .
+  op s : -> Sys .
+  red inv3(init,r) .
+close
+
+--> true
+open PROPERTIES .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = true .
+  red inv3(s,r) implies inv3(fkmsg1(s,r1,r2,r3),r) .
+close
+
+--> true
+open PROPERTIES .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = false .
+  red inv3(s,r) implies inv3(fkmsg1(s,r1,r2,r3),r) .
+close
+
+--> true
+open PROPERTIES .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Data .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = true .
+  red inv3(s,r) implies inv3(fkmsg2(s,r1,r2,r3),r) .
+close
+
+--> true
+open PROPERTIES .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Data .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = false .
+  red inv3(s,r) implies inv3(fkmsg2(s,r1,r2,r3),r) .
+close
+
+--> true
+open PROPERTIES .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (r2 \in knl(s)) = true .
+  red inv3(s,r) implies inv3(g2(s,r1,r2),r) .
+close
+
+--> true
+open PROPERTIES .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (r2 \in knl(s)) = false .
+  red inv3(s,r) implies inv3(g2(s,r1,r2),r) .
+close
+
+--> true
+open PROPERTIES .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = false .
+  red inv3(s,r) implies inv3(g2(s,r1,r2),r) .
+close
+
+--> true
+open PROPERTIES .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (enc(r1,r2) \in knl(s)) = true .
+  eq (r \in r2) = true .
+  eq (r \in knl(s)) = true .
+  red inv3(s,r) implies inv3(g22(s,r1,r2),r) .
+close
+
+--> true
+open PROPERTIES .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (enc(r1,r2) \in knl(s)) = true .
+  eq (r \in r2) = true .
+  eq (r \in knl(s)) = false .
+  eq (r \in urand(s)) = true .
+  red inv3(s,r) implies inv3(g22(s,r1,r2),r) .
+close
+
+--> true, use inv4 as a lemma
+open PROPERTIES .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (enc(r1,r2) \in knl(s)) = true .
+  eq (r \in r2) = true .
+  eq (r \in knl(s)) = false .
+  eq (r \in urand(s)) = false .
+  red inv4(s,r1,r,r2) implies inv3(s,r) implies inv3(g22(s,r1,r2),r) .
+close
+
+--> true
+open PROPERTIES .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (enc(r1,r2) \in knl(s)) = true .
+  eq (r \in r2) = false .
+  red inv3(s,r) implies inv3(g22(s,r1,r2),r) .
+close
+
+--> true
+open PROPERTIES .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (enc(r1,r2) \in knl(s)) = false .
+  red inv3(s,r) implies inv3(g22(s,r1,r2),r) .
+close
+
+--> true
+open PROPERTIES .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = false .
+  red inv3(s,r) implies inv3(g22(s,r1,r2),r) .
+close
+
+--> true
+open PROPERTIES .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op s : -> Sys .
+  red inv3(s,r) implies inv3(gBasic(s,r1),r) .
+close
+
+--> true
+open PROPERTIES .
+  op r : -> Rand .
+  op r1 : -> Rand .
+  op s : -> Sys .
+  eq (r1 \in urand(s)) = true .
+  red inv3(s,r) implies inv3(gRand(s,r1),r) .
+close
+
+--> true
+open PROPERTIES .
+  op r : -> Rand .
+  op r1 : -> Rand .
+  op s : -> Sys .
+  eq (r1 \in urand(s)) = false .
+  red inv3(s,r) implies inv3(gRand(s,r1),r) .
+close
+
+--> true
+open PROPERTIES .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in urand(s)) = true .
+  red inv3(s,r) implies inv3(send1(s,r1,r2,r3),r) .
+close
+
+--> true
+open PROPERTIES .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in urand(s)) = false .
+  red inv3(s,r) implies inv3(send1(s,r1,r2,r3),r) .
+close
+
+--> true
+open PROPERTIES .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = true .
+  red inv3(s,r) implies inv3(send2(s,r1,r2,r3,r4),r) .
+close
+
+--> true
+open PROPERTIES .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = false .
+  red inv3(s,r) implies inv3(send2(s,r1,r2,r3,r4),r) .
+close
+
+--> Time taken is 155ms

@@ -1,0 +1,810 @@
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op s : -> Sys .
+  red iden(init,a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = true .
+  red iden(s,a,b,b2,r,d) implies iden(fkmsg1(s,r1,r2,r3),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = false .
+  red iden(s,a,b,b2,r,d) implies iden(fkmsg1(s,r1,r2,r3),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Data .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = true .
+  eq a = r2 .
+  eq b = intru .
+  eq b2 = intru .
+  eq d = r3 .
+  eq r1 = intru .
+  eq r2 = intru .
+  red iden(s,a,b,b2,r,d) implies iden(fkmsg2(s,r1,r2,r3),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Data .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = true .
+  eq a = r2 .
+  eq b = intru .
+  eq b2 = intru .
+  eq d = r3 .
+  eq r1 = intru .
+  eq (r2 = intru) = false .
+  eq r3 = enc(gk(r2),(r || intru)) .
+  eq (enc(gk(r2),(r || intru)) \in knl(s)) = true .
+  eq (msg1(r2,r2,intru,r) \in nw(s)) = true .
+  eq (msg2(intru,intru,r2,enc(gk(r2),(r || intru))) \in nw(s)) = true .
+  red iden(s,a,b,b2,r,d) implies iden(fkmsg2(s,r1,r2,r3),a,b,b2,r,d) .
+close
+
+--> true, use inv7 as a lemma
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Data .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = true .
+  eq a = r2 .
+  eq b = intru .
+  eq b2 = intru .
+  eq d = r3 .
+  eq r1 = intru .
+  eq (r2 = intru) = false .
+  eq r3 = enc(gk(r2),(r || intru)) .
+  eq (enc(gk(r2),(r || intru)) \in knl(s)) = true .
+  eq (msg1(r2,r2,intru,r) \in nw(s)) = true .
+  eq (msg2(intru,intru,r2,enc(gk(r2),(r || intru))) \in nw(s)) = false .
+  red inv7(s,r2,r) implies iden(s,a,b,b2,r,d) implies iden(fkmsg2(s,r1,r2,r3),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Data .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = true .
+  eq a = r2 .
+  eq b = intru .
+  eq b2 = intru .
+  eq d = r3 .
+  eq r1 = intru .
+  eq (r2 = intru) = false .
+  eq r3 = enc(gk(r2),(r || intru)) .
+  eq (enc(gk(r2),(r || intru)) \in knl(s)) = true .
+  eq (msg1(r2,r2,intru,r) \in nw(s)) = false .
+  red iden(s,a,b,b2,r,d) implies iden(fkmsg2(s,r1,r2,r3),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Data .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = true .
+  eq a = r2 .
+  eq b = intru .
+  eq b2 = intru .
+  eq d = r3 .
+  eq r1 = intru .
+  eq (r2 = intru) = false .
+  eq r3 = enc(gk(r2),(r || intru)) .
+  eq (enc(gk(r2),(r || intru)) \in knl(s)) = false .
+  red iden(s,a,b,b2,r,d) implies iden(fkmsg2(s,r1,r2,r3),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Data .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = true .
+  eq a = r2 .
+  eq b = intru .
+  eq b2 = intru .
+  eq d = r3 .
+  eq r1 = intru .
+  eq (r2 = intru) = false .
+  eq (r3 = enc(gk(r2),(r || intru))) = false .
+  red iden(s,a,b,b2,r,d) implies iden(fkmsg2(s,r1,r2,r3),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Data .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = true .
+  eq a = r2 .
+  eq b = intru .
+  eq b2 = intru .
+  eq d = r3 .
+  eq (r1 = intru) = false .
+  red iden(s,a,b,b2,r,d) implies iden(fkmsg2(s,r1,r2,r3),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Data .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = true .
+  eq a = r2 .
+  eq b = intru .
+  eq b2 = intru .
+  eq (d = r3) = false .
+  red iden(s,a,b,b2,r,d) implies iden(fkmsg2(s,r1,r2,r3),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Data .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = true .
+  eq a = r2 .
+  eq b = intru .
+  eq (b2 = intru) = false .
+  red iden(s,a,b,b2,r,d) implies iden(fkmsg2(s,r1,r2,r3),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Data .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = true .
+  eq a = r2 .
+  eq (b = intru) = false .
+  red iden(s,a,b,b2,r,d) implies iden(fkmsg2(s,r1,r2,r3),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Data .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = true .
+  eq (a = r2) = false .
+  red iden(s,a,b,b2,r,d) implies iden(fkmsg2(s,r1,r2,r3),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Data .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = false .
+  red iden(s,a,b,b2,r,d) implies iden(fkmsg2(s,r1,r2,r3),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (r2 \in knl(s)) = true .
+  red iden(s,a,b,b2,r,d) implies iden(g2(s,r1,r2),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (r2 \in knl(s)) = false .
+  red iden(s,a,b,b2,r,d) implies iden(g2(s,r1,r2),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = false .
+  red iden(s,a,b,b2,r,d) implies iden(g2(s,r1,r2),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (enc(r1,r2) \in knl(s)) = true .
+  red iden(s,a,b,b2,r,d) implies iden(g22(s,r1,r2),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (enc(r1,r2) \in knl(s)) = false .
+  red iden(s,a,b,b2,r,d) implies iden(g22(s,r1,r2),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = false .
+  red iden(s,a,b,b2,r,d) implies iden(g22(s,r1,r2),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op s : -> Sys .
+  red iden(s,a,b,b2,r,d) implies iden(gBasic(s,r1),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Rand .
+  op s : -> Sys .
+  eq (r1 \in urand(s)) = true .
+  red iden(s,a,b,b2,r,d) implies iden(gRand(s,r1),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Rand .
+  op s : -> Sys .
+  eq (r1 \in urand(s)) = false .
+  red iden(s,a,b,b2,r,d) implies iden(gRand(s,r1),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in urand(s)) = true .
+  red iden(s,a,b,b2,r,d) implies iden(send1(s,r1,r2,r3),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in urand(s)) = false .
+  eq a = r1 .
+  eq b = intru .
+  eq r2 = intru .
+  eq r = r3 .
+  eq r1 = intru .
+  red iden(s,a,b,b2,r,d) implies iden(send1(s,r1,r2,r3),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in urand(s)) = false .
+  eq a = r1 .
+  eq b = intru .
+  eq r2 = intru .
+  eq r = r3 .
+  eq (r1 = intru) = false .
+  eq d = enc(gk(r1),(r3 || intru)) .
+  eq (msg1(r1,r1,intru,r3) \in nw(s)) = true .
+  red iden(s,a,b,b2,r,d) implies iden(send1(s,r1,r2,r3),a,b,b2,r,d) .
+close
+
+--> true, use inv1 as a lemma
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in urand(s)) = false .
+  eq a = r1 .
+  eq b = intru .
+  eq r2 = intru .
+  eq r = r3 .
+  eq (r1 = intru) = false .
+  eq d = enc(gk(r1),(r3 || intru)) .
+  eq (msg1(r1,r1,intru,r3) \in nw(s)) = false .
+  eq (msg2(b2,intru,r1,enc(gk(r1),(r3 || intru))) \in nw(s)) = true .
+  red inv1(s,r1,intru,b2,r3) implies iden(s,a,b,b2,r,d) implies iden(send1(s,r1,r2,r3),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in urand(s)) = false .
+  eq a = r1 .
+  eq b = intru .
+  eq r2 = intru .
+  eq r = r3 .
+  eq (r1 = intru) = false .
+  eq d = enc(gk(r1),(r3 || intru)) .
+  eq (msg1(r1,r1,intru,r3) \in nw(s)) = false .
+  eq (msg2(b2,intru,r1,enc(gk(r1),(r3 || intru))) \in nw(s)) = false .
+  red iden(s,a,b,b2,r,d) implies iden(send1(s,r1,r2,r3),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in urand(s)) = false .
+  eq a = r1 .
+  eq b = intru .
+  eq r2 = intru .
+  eq r = r3 .
+  eq (r1 = intru) = false .
+  eq (d = enc(gk(r1),(r3 || intru))) = false .
+  red iden(s,a,b,b2,r,d) implies iden(send1(s,r1,r2,r3),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in urand(s)) = false .
+  eq a = r1 .
+  eq b = intru .
+  eq r2 = intru .
+  eq (r = r3) = false .
+  red iden(s,a,b,b2,r,d) implies iden(send1(s,r1,r2,r3),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in urand(s)) = false .
+  eq a = r1 .
+  eq b = intru .
+  eq (r2 = intru) = false .
+  red iden(s,a,b,b2,r,d) implies iden(send1(s,r1,r2,r3),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in urand(s)) = false .
+  eq a = r1 .
+  eq (b = intru) = false .
+  red iden(s,a,b,b2,r,d) implies iden(send1(s,r1,r2,r3),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in urand(s)) = false .
+  eq (a = r1) = false .
+  red iden(s,a,b,b2,r,d) implies iden(send1(s,r1,r2,r3),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = true .
+  eq a = r2 .
+  eq b = intru .
+  eq b2 = r3 .
+  eq r3 = intru .
+  eq (msg1(r1,r2,intru,r4) \in nw(s)) = true .
+  eq r2 = intru .
+  eq (msg1(r1,intru,intru,r4) \in nw(s)) = true .
+  red iden(s,a,b,b2,r,d) implies iden(send2(s,r1,r2,r3,r4),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = true .
+  eq a = r2 .
+  eq b = intru .
+  eq b2 = r3 .
+  eq r3 = intru .
+  eq (msg1(r1,r2,intru,r4) \in nw(s)) = true .
+  eq r2 = intru .
+  eq (msg1(r1,intru,intru,r4) \in nw(s)) = false .
+  red iden(s,a,b,b2,r,d) implies iden(send2(s,r1,r2,r3,r4),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = true .
+  eq a = r2 .
+  eq b = intru .
+  eq b2 = r3 .
+  eq r3 = intru .
+  eq (msg1(r1,r2,intru,r4) \in nw(s)) = true .
+  eq (r2 = intru) = false .
+  eq d = enc(gk(intru),(r4 || intru)) .
+  red iden(s,a,b,b2,r,d) implies iden(send2(s,r1,r2,r3,r4),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = true .
+  eq a = r2 .
+  eq b = intru .
+  eq b2 = r3 .
+  eq r3 = intru .
+  eq (msg1(r1,r2,intru,r4) \in nw(s)) = true .
+  eq (r2 = intru) = false .
+  eq (d = enc(gk(intru),(r4 || intru))) = false .
+  red iden(s,a,b,b2,r,d) implies iden(send2(s,r1,r2,r3,r4),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = true .
+  eq a = r2 .
+  eq b = intru .
+  eq b2 = r3 .
+  eq r3 = intru .
+  eq (msg1(r1,r2,intru,r4) \in nw(s)) = false .
+  red iden(s,a,b,b2,r,d) implies iden(send2(s,r1,r2,r3,r4),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = true .
+  eq a = r2 .
+  eq b = intru .
+  eq b2 = r3 .
+  eq (r3 = intru) = false .
+  red iden(s,a,b,b2,r,d) implies iden(send2(s,r1,r2,r3,r4),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = true .
+  eq a = r2 .
+  eq b = intru .
+  eq (b2 = r3) = false .
+  red iden(s,a,b,b2,r,d) implies iden(send2(s,r1,r2,r3,r4),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = true .
+  eq a = r2 .
+  eq (b = intru) = false .
+  red iden(s,a,b,b2,r,d) implies iden(send2(s,r1,r2,r3,r4),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = true .
+  eq (a = r2) = false .
+  red iden(s,a,b,b2,r,d) implies iden(send2(s,r1,r2,r3,r4),a,b,b2,r,d) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op b : -> Prin .
+  op b2 : -> Prin .
+  op d : -> Data .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = false .
+  red iden(s,a,b,b2,r,d) implies iden(send2(s,r1,r2,r3,r4),a,b,b2,r,d) .
+close
+
+--> Time taken is 447ms

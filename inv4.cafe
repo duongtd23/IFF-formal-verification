@@ -1,0 +1,504 @@
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op s : -> Sys .
+  red inv4(init,k,r,dl) .
+close
+
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = true .
+  red inv4(s,k,r,dl) implies inv4(fkmsg1(s,r1,r2,r3),k,r,dl) .
+close
+
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = false .
+  red inv4(s,k,r,dl) implies inv4(fkmsg1(s,r1,r2,r3),k,r,dl) .
+close
+
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Data .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = true .
+  red inv4(s,k,r,dl) implies inv4(fkmsg2(s,r1,r2,r3),k,r,dl) .
+close
+
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Data .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = false .
+  red inv4(s,k,r,dl) implies inv4(fkmsg2(s,r1,r2,r3),k,r,dl) .
+close
+
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (r2 \in knl(s)) = true .
+  eq dl = r2 .
+  eq k = r1 .
+  eq (r \in r2) = true .
+  eq (r \in urand(s)) = true .
+  red inv4(s,k,r,dl) implies inv4(g2(s,r1,r2),k,r,dl) .
+close
+
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (r2 \in knl(s)) = true .
+  eq dl = r2 .
+  eq k = r1 .
+  eq (r \in r2) = true .
+  eq (r \in urand(s)) = false .
+  eq (enc(r1,r2) \in knl(s)) = true .
+  red inv4(s,k,r,dl) implies inv4(g2(s,r1,r2),k,r,dl) .
+close
+
+--> true, use inv3 as a lemma
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (r2 \in knl(s)) = true .
+  eq dl = r2 .
+  eq k = r1 .
+  eq (r \in r2) = true .
+  eq (r \in urand(s)) = false .
+  eq (enc(r1,r2) \in knl(s)) = false .
+  eq (r \in knl(s)) = true .
+  red inv3(s,r) implies inv4(s,k,r,dl) implies inv4(g2(s,r1,r2),k,r,dl) .
+close
+
+--> true, use lm1 as a lemma
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (r2 \in knl(s)) = true .
+  eq dl = r2 .
+  eq k = r1 .
+  eq (r \in r2) = true .
+  eq (r \in urand(s)) = false .
+  eq (enc(r1,r2) \in knl(s)) = false .
+  eq (r \in knl(s)) = false .
+  red lm1(r,r2,knl(s)) implies inv4(s,k,r,dl) implies inv4(g2(s,r1,r2),k,r,dl) .
+close
+
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (r2 \in knl(s)) = true .
+  eq dl = r2 .
+  eq k = r1 .
+  eq (r \in r2) = false .
+  red inv4(s,k,r,dl) implies inv4(g2(s,r1,r2),k,r,dl) .
+close
+
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (r2 \in knl(s)) = true .
+  eq dl = r2 .
+  eq (k = r1) = false .
+  red inv4(s,k,r,dl) implies inv4(g2(s,r1,r2),k,r,dl) .
+close
+
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (r2 \in knl(s)) = true .
+  eq (dl = r2) = false .
+  red inv4(s,k,r,dl) implies inv4(g2(s,r1,r2),k,r,dl) .
+close
+
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (r2 \in knl(s)) = false .
+  red inv4(s,k,r,dl) implies inv4(g2(s,r1,r2),k,r,dl) .
+close
+
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = false .
+  red inv4(s,k,r,dl) implies inv4(g2(s,r1,r2),k,r,dl) .
+close
+
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (enc(r1,r2) \in knl(s)) = true .
+  eq (r \in dl) = true .
+  eq (enc(k,dl) \in r2) = true .
+  eq (r \in urand(s)) = true .
+  red inv4(s,k,r,dl) implies inv4(g22(s,r1,r2),k,r,dl) .
+close
+
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (enc(r1,r2) \in knl(s)) = true .
+  eq (r \in dl) = true .
+  eq (enc(k,dl) \in r2) = true .
+  eq (r \in urand(s)) = false .
+  eq (enc(k,dl) \in knl(s)) = true .
+  red inv4(s,k,r,dl) implies inv4(g22(s,r1,r2),k,r,dl) .
+close
+
+--> true, use lm1 as a lemma
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (enc(r1,r2) \in knl(s)) = true .
+  eq (r \in dl) = true .
+  eq (enc(k,dl) \in r2) = true .
+  eq (r \in urand(s)) = false .
+  eq (enc(k,dl) \in knl(s)) = false .
+  eq (r2 \in knl(s)) = true .
+  red lm1(enc(k,dl),r2,knl(s)) implies inv4(s,k,r,dl) implies inv4(g22(s,r1,r2),k,r,dl) .
+close
+
+--> true, use inv5 as a lemma
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (enc(r1,r2) \in knl(s)) = true .
+  eq (r \in dl) = true .
+  eq (enc(k,dl) \in r2) = true .
+  eq (r \in urand(s)) = false .
+  eq (enc(k,dl) \in knl(s)) = false .
+  eq (r2 \in knl(s)) = false .
+  red inv5(s,r1,k,r2,dl) implies inv4(s,k,r,dl) implies inv4(g22(s,r1,r2),k,r,dl) .
+close
+
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (enc(r1,r2) \in knl(s)) = true .
+  eq (r \in dl) = true .
+  eq (enc(k,dl) \in r2) = false .
+  red inv4(s,k,r,dl) implies inv4(g22(s,r1,r2),k,r,dl) .
+close
+
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (enc(r1,r2) \in knl(s)) = true .
+  eq (r \in dl) = false .
+  red inv4(s,k,r,dl) implies inv4(g22(s,r1,r2),k,r,dl) .
+close
+
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (enc(r1,r2) \in knl(s)) = false .
+  red inv4(s,k,r,dl) implies inv4(g22(s,r1,r2),k,r,dl) .
+close
+
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = false .
+  red inv4(s,k,r,dl) implies inv4(g22(s,r1,r2),k,r,dl) .
+close
+
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op s : -> Sys .
+  red inv4(s,k,r,dl) implies inv4(gBasic(s,r1),k,r,dl) .
+close
+
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Rand .
+  op s : -> Sys .
+  eq (r1 \in urand(s)) = true .
+  red inv4(s,k,r,dl) implies inv4(gRand(s,r1),k,r,dl) .
+close
+
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Rand .
+  op s : -> Sys .
+  eq (r1 \in urand(s)) = false .
+  red inv4(s,k,r,dl) implies inv4(gRand(s,r1),k,r,dl) .
+close
+
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in urand(s)) = true .
+  red inv4(s,k,r,dl) implies inv4(send1(s,r1,r2,r3),k,r,dl) .
+close
+
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in urand(s)) = false .
+  red inv4(s,k,r,dl) implies inv4(send1(s,r1,r2,r3),k,r,dl) .
+close
+
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = true .
+  eq dl = (r4 || r3) .
+  eq r = r4 .
+  eq k = gk(r3) .
+  eq (r4 \in urand(s)) = true .
+  red inv4(s,k,r,dl) implies inv4(send2(s,r1,r2,r3,r4),k,r,dl) .
+close
+
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = true .
+  eq dl = (r4 || r3) .
+  eq r = r4 .
+  eq k = gk(r3) .
+  eq (r4 \in urand(s)) = false .
+  eq (enc(gk(r3),(r4 || r3)) \in knl(s)) = true .
+  red inv4(s,k,r,dl) implies inv4(send2(s,r1,r2,r3,r4),k,r,dl) .
+close
+
+--> true, use inv6 as a lemma
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = true .
+  eq dl = (r4 || r3) .
+  eq r = r4 .
+  eq k = gk(r3) .
+  eq (r4 \in urand(s)) = false .
+  eq (enc(gk(r3),(r4 || r3)) \in knl(s)) = false .
+  red inv6(s,r3,r2,r1,r4) implies inv4(s,k,r,dl) implies inv4(send2(s,r1,r2,r3,r4),k,r,dl) .
+close
+
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = true .
+  eq dl = (r4 || r3) .
+  eq r = r4 .
+  eq (k = gk(r3)) = false .
+  red inv4(s,k,r,dl) implies inv4(send2(s,r1,r2,r3,r4),k,r,dl) .
+close
+
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = true .
+  eq dl = (r4 || r3) .
+  eq (r = r4) = false .
+  red inv4(s,k,r,dl) implies inv4(send2(s,r1,r2,r3,r4),k,r,dl) .
+close
+
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = true .
+  eq (dl = (r4 || r3)) = false .
+  red inv4(s,k,r,dl) implies inv4(send2(s,r1,r2,r3,r4),k,r,dl) .
+close
+
+--> true
+open PROPERTIES .
+  op dl : -> DataL .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = false .
+  red inv4(s,k,r,dl) implies inv4(send2(s,r1,r2,r3,r4),k,r,dl) .
+close
+
+--> Time taken is 3344ms

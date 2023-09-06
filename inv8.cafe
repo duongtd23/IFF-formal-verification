@@ -1,0 +1,255 @@
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op s : -> Sys .
+  eq a = intru .
+  red inv8(init,a) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op s : -> Sys .
+  eq (a = intru) = false .
+  red inv8(init,a) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = true .
+  red inv8(s,a) implies inv8(fkmsg1(s,r1,r2,r3),a) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = false .
+  red inv8(s,a) implies inv8(fkmsg1(s,r1,r2,r3),a) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Data .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = true .
+  red inv8(s,a) implies inv8(fkmsg2(s,r1,r2,r3),a) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Data .
+  op s : -> Sys .
+  eq (r3 \in knl(s)) = false .
+  red inv8(s,a) implies inv8(fkmsg2(s,r1,r2,r3),a) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (r2 \in knl(s)) = true .
+  red inv8(s,a) implies inv8(g2(s,r1,r2),a) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (r2 \in knl(s)) = false .
+  red inv8(s,a) implies inv8(g2(s,r1,r2),a) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = false .
+  red inv8(s,a) implies inv8(g2(s,r1,r2),a) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (enc(r1,r2) \in knl(s)) = true .
+  eq a = intru .
+  red inv8(s,a) implies inv8(g22(s,r1,r2),a) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (enc(r1,r2) \in knl(s)) = true .
+  eq (a = intru) = false .
+  eq (gk(a) \in r2) = true .
+  eq (gk(a) \in knl(s)) = true .
+  red inv8(s,a) implies inv8(g22(s,r1,r2),a) .
+close
+
+--> true, use lm1 as a lemma
+open PROPERTIES .
+  op a : -> Prin .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (enc(r1,r2) \in knl(s)) = true .
+  eq (a = intru) = false .
+  eq (gk(a) \in r2) = true .
+  eq (gk(a) \in knl(s)) = false .
+  eq (r2 \in knl(s)) = true .
+  red lm1(gk(a),r2,knl(s)) implies inv8(s,a) implies inv8(g22(s,r1,r2),a) .
+close
+
+--> true, use inv9 as a lemma
+open PROPERTIES .
+  op a : -> Prin .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (enc(r1,r2) \in knl(s)) = true .
+  eq (a = intru) = false .
+  eq (gk(a) \in r2) = true .
+  eq (gk(a) \in knl(s)) = false .
+  eq (r2 \in knl(s)) = false .
+  red inv9(s,a,r1,r2) implies inv8(s,a) implies inv8(g22(s,r1,r2),a) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (enc(r1,r2) \in knl(s)) = true .
+  eq (a = intru) = false .
+  eq (gk(a) \in r2) = false .
+  red inv8(s,a) implies inv8(g22(s,r1,r2),a) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = true .
+  eq (enc(r1,r2) \in knl(s)) = false .
+  red inv8(s,a) implies inv8(g22(s,r1,r2),a) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r1 : -> Key .
+  op r2 : -> DataL .
+  op s : -> Sys .
+  eq (r1 \in knl(s)) = false .
+  red inv8(s,a) implies inv8(g22(s,r1,r2),a) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r1 : -> Prin .
+  op s : -> Sys .
+  red inv8(s,a) implies inv8(gBasic(s,r1),a) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r1 : -> Rand .
+  op s : -> Sys .
+  eq (r1 \in urand(s)) = true .
+  red inv8(s,a) implies inv8(gRand(s,r1),a) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r1 : -> Rand .
+  op s : -> Sys .
+  eq (r1 \in urand(s)) = false .
+  red inv8(s,a) implies inv8(gRand(s,r1),a) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in urand(s)) = true .
+  red inv8(s,a) implies inv8(send1(s,r1,r2,r3),a) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Rand .
+  op s : -> Sys .
+  eq (r3 \in urand(s)) = false .
+  red inv8(s,a) implies inv8(send1(s,r1,r2,r3),a) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = true .
+  red inv8(s,a) implies inv8(send2(s,r1,r2,r3,r4),a) .
+close
+
+--> true
+open PROPERTIES .
+  op a : -> Prin .
+  op r1 : -> Prin .
+  op r2 : -> Prin .
+  op r3 : -> Prin .
+  op r4 : -> Rand .
+  op s : -> Sys .
+  eq (msg1(r1,r2,r3,r4) \in nw(s)) = false .
+  red inv8(s,a) implies inv8(send2(s,r1,r2,r3,r4),a) .
+close
+
+--> Time taken is 230ms

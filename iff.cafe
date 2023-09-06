@@ -12,11 +12,12 @@ mod* PRINCIPAL {
 mod* KEY {
   pr(PRINCIPAL)
   [Key]
-  op k : Prin -> Key
+-- group key of the principal
+  op gk : Prin -> Key {constr}
   vars P P2 : Prin
   vars K K2 : Key
-  ceq (k(P) = k(intru)) = false if not(P = intru) .
-  ceq (k(P) = k(P2)) = true if not(P = intru) and not(P2 = intru) .
+  ceq (gk(P) = gk(intru)) = false if not(P = intru) .
+  ceq (gk(P) = gk(P2)) = true if not(P = intru) and not(P2 = intru) .
 }
 mod* RANDOM {
   [Rand]
@@ -58,25 +59,24 @@ mod! DATA {
 mod! ENCRYPTION {
   pr(DATA)
   
---         Key   Plaintext     Ciphertext
-  op enc : Data  DataL      -> Data {constr}
---         Key   Ciphertext    Plaintext
-  op dec : Data  Data       -> DataL
+--         Key  Plaintext     Ciphertext
+  op enc : Key  DataL      -> Data {constr}
+--         Key  Ciphertext    Plaintext
+  op dec : Key  Data       -> DataL
 
   vars A B : Prin 
   vars KE KE2 D D2 : Data
   vars DL DL2 : DataL
-  vars K : Key
+  vars K K2 : Key
   vars R : Rand
 
   eq dec(K, enc(K,DL)) = DL .
   eq (dec(K, D2) = DL) = (D2 = enc(K,DL)) .
-  ceq (dec(KE, D) = DL2) = false 
-    if (KE :is Prin) or (KE :is Rand) .
 
-  eq (enc(KE,DL) = enc(KE2,DL2)) = (KE = KE2 and DL = DL2) .
-  ceq (enc(KE,DL) = D) = false if (D :is Prin) or 
-                                   (D :is Rand) .
+  eq (enc(K,DL) = enc(K2,DL2)) = (K = K2 and DL = DL2) .
+  ceq (enc(K,DL) = D) = false if (D :is Prin) or 
+                                 (D :is Rand) or
+                                 (D :is Key) .
 }
 mod! MESSAGE {
   pr(ENCRYPTION)
@@ -123,7 +123,7 @@ mod! NETWORK {
 view TRIV2DATA from TRIV to DATA {
   sort Elt -> Data
 }
-mod* PROTOCOL {
+mod* IFF {
   pr(NETWORK)
   pr(SET(D <= TRIV2DATA)*{sort Set -> RandSet})
 
@@ -146,7 +146,7 @@ mod* PROTOCOL {
 
   eq nw(init) = void .
   eq urand(init) = empty .
-  eq knl(init) = k(intru) .
+  eq knl(init) = gk(intru) .
 
   op c-send1 : Sys Rand -> Bool
   eq c-send1(S,R) = not(R \in urand(S)) .
@@ -164,11 +164,11 @@ mod* PROTOCOL {
   eq c-send2(S,A2,A,B,R) = 
     msg1(A2,A,B, R) \in nw(S) .
   ceq nw(send2(S,A2,A,B,R)) = 
-      (msg2(B,B,A, enc(k(B), R || B)) , nw(S))
+      (msg2(B,B,A, enc(gk(B), R || B)) , nw(S))
     if c-send2(S,A2,A,B,R) .
   eq urand(send2(S,A2,A,B,R)) = urand(S) .
   ceq knl(send2(S,A2,A,B,R)) = 
-      (enc(k(B), R || B) || knl(S))
+      (enc(gk(B), R || B) || knl(S))
     if c-send2(S,A2,A,B,R) .
   ceq send2(S,A2,A,B,R) = S
     if not c-send2(S,A2,A,B,R) .
@@ -192,25 +192,25 @@ mod* PROTOCOL {
   eq urand(gBasic(S,A)) = urand(S) .
   eq knl(gBasic(S,A)) = (A || knl(S)) .
 
-  op g2 : Sys Data DataL -> Sys {constr}
-  op c-g2 : Sys Data DataL -> Bool
-  eq c-g2(S,D1,DL2) = (D1 \in knl(S) and DL2 \in knl(S)) .
-  eq nw(g2(S,D1,DL2)) = nw(S) .
-  eq urand(g2(S,D1,DL2)) = urand(S) .
-  ceq knl(g2(S,D1,DL2)) = 
-      (enc(D1,DL2) || knl(S)) 
-    if c-g2(S,D1,DL2) .
-  ceq g2(S,D1,DL2) = S if not c-g2(S,D1,DL2) .
+  op g2 : Sys Key DataL -> Sys {constr}
+  op c-g2 : Sys Key DataL -> Bool
+  eq c-g2(S,K,DL2) = (K \in knl(S) and DL2 \in knl(S)) .
+  eq nw(g2(S,K,DL2)) = nw(S) .
+  eq urand(g2(S,K,DL2)) = urand(S) .
+  ceq knl(g2(S,K,DL2)) = 
+      (enc(K,DL2) || knl(S)) 
+    if c-g2(S,K,DL2) .
+  ceq g2(S,K,DL2) = S if not c-g2(S,K,DL2) .
 
 -- decryption capabilities
-  op g22 : Sys Data DataL -> Sys {constr}
-  op c-g22 : Sys Data DataL -> Bool
-  eq c-g22(S,D1,DL2) = (D1 \in knl(S) and enc(D1,DL2) \in knl(S)) .
-  eq nw(g22(S,D1,DL2)) = nw(S) .
-  eq urand(g22(S,D1,DL2)) = urand(S) .
-  ceq knl(g22(S,D1,DL2)) = (DL2 || knl(S)) 
-    if c-g22(S,D1,DL2) .
-  ceq g22(S,D1,DL2) = S if not c-g22(S,D1,DL2) .
+  op g22 : Sys Key DataL -> Sys {constr}
+  op c-g22 : Sys Key DataL -> Bool
+  eq c-g22(S,K,DL2) = (K \in knl(S) and enc(K,DL2) \in knl(S)) .
+  eq nw(g22(S,K,DL2)) = nw(S) .
+  eq urand(g22(S,K,DL2)) = urand(S) .
+  ceq knl(g22(S,K,DL2)) = (DL2 || knl(S)) 
+    if c-g22(S,K,DL2) .
+  ceq g22(S,K,DL2) = S if not c-g22(S,K,DL2) .
 
 -- faking msg1 messages
   op fkmsg1 : Sys Prin Prin Rand -> Sys {constr}
@@ -237,4 +237,92 @@ mod* PROTOCOL {
   eq knl(fkmsg2(S,A,B,D1)) = knl(S) .
   ceq fkmsg2(S,A,B,D1) = S 
     if not c-fkmsg2(S,A,B,D1) .
+}
+
+mod PROPERTIES {
+  pr(IFF)
+  vars A B A2 B2 A3 B3 A4 : Prin 
+  vars D D1 D2 : Data
+  vars DL DL2 DL3 : DataL
+  vars S : Sys
+  vars R R2 : Rand
+  vars K K2 : Key
+
+-- checking the protocol execution
+  op check : Sys Prin Prin Prin Rand Data -> Bool
+  eq check(S,A,B,B2,R,D) = 
+    (msg1(A,A,B, R) \in nw(S) and
+     msg2(B2,B,A, D) \in nw(S) and
+     dec(gk(A), D) = R || B) .
+
+-- 1+?
+  op iden : Sys Prin Prin Prin Rand Data -> Bool
+  eq iden(S,A,B,B2,R,D) = 
+    (not(A = intru) and
+     msg1(A,A,B, R) \in nw(S) and
+     msg2(B2,B,A, D) \in nw(S) and
+     dec(gk(A), D) = R || B)
+    implies not(B = intru) .
+
+-- 2+6
+  op inv1 : Sys Prin Prin Prin Rand -> Bool
+  eq inv1(S,A,B,B2,R) = 
+    msg2(B2,B,A, enc(gk(A), R || B)) \in nw(S)
+    implies R \in urand(S) .
+
+-- 3+5+6+lm1
+  op inv2 : Sys Prin Prin Rand -> Bool
+  eq inv2(S,A,B,R) = 
+    enc(gk(A), R || B) \in knl(S)
+    implies R \in urand(S) .
+
+-- 4
+  op inv3 : Sys Rand -> Bool
+  eq inv3(S,R) = 
+    R \in knl(S)
+    implies R \in urand(S) .
+
+-- 3+5+6+lm1
+  op inv4 : Sys Key Rand DataL -> Bool
+  eq inv4(S,K,R,DL) = 
+    (enc(K, DL) \in knl(S) and
+     R \in DL)
+    implies R \in urand(S) .
+
+-- 5+lm1
+  op inv5 : Sys Key Key DataL DataL -> Bool
+  eq inv5(S,K,K2,DL,DL2) = 
+    (enc(K, DL) \in knl(S) and
+     enc(K2, DL2) \in DL)
+    implies DL \in knl(S) .
+
+-- 3
+  op inv6 : Sys Prin Prin Prin Rand -> Bool
+  eq inv6(S,A,B,A2,R) = 
+    msg1(A2,B,A, R) \in nw(S)
+    implies R \in urand(S) .
+
+-- 5+8+1
+  op inv7 : Sys Prin Rand -> Bool
+  eq inv7(S,A,R) = 
+    not(A = intru)
+    implies not(enc(gk(A), R || intru) \in knl(S)) .
+
+-- 9+lm1
+  op inv8 : Sys Prin -> Bool
+  eq inv8(S,A) = 
+    not(A = intru)
+    implies not(gk(A) \in knl(S)) .
+
+-- 5+lm1
+  op inv9 : Sys Prin Key DataL -> Bool
+  eq inv9(S,A,K,DL) = 
+    (enc(K, DL) \in knl(S) and
+     gk(A) \in DL)
+    implies DL \in knl(S) .
+
+  op lm1 : Data DataL DataL -> Bool
+  eq lm1(D,DL,DL2) = (D \in DL and DL \in DL2)
+    implies D \in DL2 .
+
 }

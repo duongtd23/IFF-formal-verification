@@ -1,0 +1,14 @@
+load iff.cafe .
+
+ipsgopen PROPERTIES .
+  inv inv1(S:Sys, A:Prin, B:Prin, B2:Prin, R:Rand) .
+  inv inv7(S:Sys, A:Prin, R:Rand) .
+  generate iden(S:Sys, A:Prin, B:Prin, B2:Prin, R:Rand, D:Data) induction on S:Sys .
+close
+
+set-output iden.cafe .
+:save-proof .
+
+eof
+
+load inputs/input-iden.cafe .
