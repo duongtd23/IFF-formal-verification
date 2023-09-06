@@ -1,0 +1,2281 @@
+
+:proven(lm1(D:Data, DL:DataL, DL2:DataL))
+:goal{
+eq [iff9 :nonexec] : iden(S:Sys, P:Prin, P1:Prin, P0:Prin, R:Rand, D:Data)  = true .
+ eq [iff7 :nonexec] : inv1(S:Sys, P:Prin, P1:Prin, P0:Prin, R:Rand)  = true .
+ eq [iff3 :nonexec] : inv2(S:Sys, P:Prin, P0:Prin, R:Rand)  = true .
+ eq [iff1 :nonexec] : inv3(S:Sys, R:Rand)  = true .
+ eq [iff5 :nonexec] : inv4(S:Sys, K:Key, R:Rand, D:DataL)  = true .
+ eq [iff8 :nonexec] : inv5(S:Sys, K:Key, K0:Key, D:DataL, D0:DataL)  = true .
+ eq [iff6 :nonexec] : inv6(S:Sys, P:Prin, P1:Prin, P0:Prin, R:Rand)  = true .
+ eq [iff2 :nonexec] : inv7(S:Sys, P:Prin, R:Rand)  = true .
+ eq [iff :nonexec] : inv8(S:Sys, P:Prin)  = true .
+ eq [iff4 :nonexec] : inv9(S:Sys, P:Prin, K:Key, D:DataL)  = true .
+}
+:ind on (S:Sys)
+:apply(si)
+:sel(1)
+	:apply(tc)
+
+	:def csb1#1 = :ctf [R#Rand \in knl(S#Sys)  .]
+
+	:apply(csb1#1)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb2#1 = :ctf [R#Rand \in knl(S#Sys)  .]
+
+	:apply(csb2#1)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb3#1 = :ctf [R#Rand \in knl(S#Sys)  .]
+
+	:apply(csb3#1)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb4#1 = :ctf [R#Rand \in knl(S#Sys)  .]
+
+	:apply(csb4#1)
+
+	:imp [iff1]  by {R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff1]  by {R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb5#1 = :ctf [R#Rand \in knl(S#Sys)  .]
+
+	:apply(csb5#1)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb6#1 = :ctf [R#Rand \in knl(S#Sys)  .]
+
+	:apply(csb6#1)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:def csb7#1 = :ctf [R#Rand \in knl(S#Sys)  .]
+
+	:apply(csb7#1)
+
+	:def csb8#1 = :ctf {eq P@Prin  = P0#Prin .}
+
+	:apply(csb8#1)
+
+	:def csb9#1 = :ctf {eq P0@Prin  = intru .}
+
+	:apply(csb9#1)
+
+	:def csb10#1 = :ctf {eq P1@Prin  = P#Prin .}
+
+	:apply(csb10#1)
+
+	:def csb11#1 = :ctf {eq R@Rand  = R#Rand .}
+
+	:apply(csb11#1)
+
+	:def csb12#1 = :ctf [R#Rand \in urand(S#Sys)  .]
+
+	:apply(csb12#1)
+
+	:imp [iff6]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb13#1 = :ctf [msg1(intru, P#Prin, P0#Prin, R#Rand) \in nw(S#Sys)  .]
+
+	:apply(csb13#1)
+
+	:imp [iff6]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff6]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:imp [iff1]  by {R:Rand <- R#Rand ;}
+
+	:apply (rd)
+
+	:imp [iff6]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff6]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff6]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff6]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff6]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb14#1 = :ctf [R#Rand \in knl(S#Sys)  .]
+
+	:apply(csb14#1)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb15#1 = :ctf [R#Rand \in knl(S#Sys)  .]
+
+	:apply(csb15#1)
+
+	:imp [iff]  by {P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:imp [iff]  by {P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:def csb16#1 = :ctf [R#Rand \in knl(S#Sys)  .]
+
+	:apply(csb16#1)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+
+:sel(5)
+	:apply(tc)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff1]  by {R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb1#5 = :ctf [D@DataL \in knl(S#Sys)  .]
+
+	:apply(csb1#5)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:imp [iff6]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff]  by {P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:def csb2#5 = :ctf [D@DataL \in knl(S#Sys)  .]
+
+	:apply(csb2#5)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+
+:sel(6)
+	:apply(tc)
+
+	:def csb1#6 = :ctf [R#Rand \in urand(S#Sys)  .]
+
+	:apply(csb1#6)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb2#6 = :ctf [R#Rand \in urand(S#Sys)  .]
+
+	:apply(csb2#6)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb3#6 = :ctf [R#Rand \in urand(S#Sys)  .]
+
+	:apply(csb3#6)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb4#6 = :ctf [R#Rand \in urand(S#Sys)  .]
+
+	:apply(csb4#6)
+
+	:imp [iff1]  by {R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff1]  by {R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb5#6 = :ctf [R#Rand \in urand(S#Sys)  .]
+
+	:apply(csb5#6)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb6#6 = :ctf [R#Rand \in urand(S#Sys)  .]
+
+	:apply(csb6#6)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:def csb7#6 = :ctf [D@DataL \in knl(S#Sys)  .]
+
+	:apply(csb7#6)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:def csb8#6 = :ctf [R#Rand \in urand(S#Sys)  .]
+
+	:apply(csb8#6)
+
+	:imp [iff6]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff6]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb9#6 = :ctf [R#Rand \in urand(S#Sys)  .]
+
+	:apply(csb9#6)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb10#6 = :ctf [R#Rand \in urand(S#Sys)  .]
+
+	:apply(csb10#6)
+
+	:imp [iff]  by {P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:imp [iff]  by {P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:def csb11#6 = :ctf [R#Rand \in urand(S#Sys)  .]
+
+	:apply(csb11#6)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:def csb12#6 = :ctf [D@DataL \in knl(S#Sys)  .]
+
+	:apply(csb12#6)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+
+:sel(7)
+	:apply(tc)
+
+	:apply (rd)
+
+	:apply (rd)
+
+	:apply (rd)
+
+	:apply (rd)
+
+	:apply (rd)
+
+	:apply (rd)
+
+	:apply (rd)
+
+	:apply (rd)
+
+	:def csb1#7 = :ctf {eq P@Prin  = intru .}
+
+	:apply(csb1#7)
+
+	:apply (rd)
+
+	:apply (rd)
+
+	:apply (rd)
+
+
+:sel(2)
+	:apply(tc)
+
+	:def csb1#2 = :ctf [D#Data \in knl(S#Sys)  .]
+
+	:apply(csb1#2)
+
+	:def csb2#2 = :ctf {eq P@Prin  = P0#Prin .}
+
+	:apply(csb2#2)
+
+	:def csb3#2 = :ctf {eq P1@Prin  = intru .}
+
+	:apply(csb3#2)
+
+	:def csb4#2 = :ctf {eq P0@Prin  = intru .}
+
+	:apply(csb4#2)
+
+	:def csb5#2 = :ctf {eq D@Data  = D#Data .}
+
+	:apply(csb5#2)
+
+	:def csb6#2 = :ctf {eq P#Prin  = intru .}
+
+	:apply(csb6#2)
+
+	:def csb7#2 = :ctf {eq P0#Prin  = intru .}
+
+	:apply(csb7#2)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb8#2 = :ctf {eq D#Data  = enc(gk(P0#Prin), R@Rand || intru) .}
+
+	:apply(csb8#2)
+
+	:def csb9#2 = :ctf [enc(gk(P0#Prin), R@Rand || intru) \in knl(S#Sys)  .]
+
+	:apply(csb9#2)
+
+	:def csb10#2 = :ctf [msg1(P0#Prin, P0#Prin, intru, R@Rand) \in nw(S#Sys)  .]
+
+	:apply(csb10#2)
+
+	:def csb11#2 = :ctf [msg2(intru, intru, P0#Prin, enc(gk(P0#Prin), R@Rand || intru)) \in nw(S#Sys)  .]
+
+	:apply(csb11#2)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:imp [iff2]  by {P:Prin <- P0#Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb12#2 = :ctf [D#Data \in knl(S#Sys)  .]
+
+	:apply(csb12#2)
+
+	:def csb13#2 = :ctf {eq P@Prin  = P0#Prin .}
+
+	:apply(csb13#2)
+
+	:def csb14#2 = :ctf {eq P1@Prin  = P#Prin .}
+
+	:apply(csb14#2)
+
+	:def csb15#2 = :ctf {eq P0@Prin  = intru .}
+
+	:apply(csb15#2)
+
+	:def csb16#2 = :ctf {eq D#Data  = enc(gk(P0#Prin), R@Rand || P#Prin) .}
+
+	:apply(csb16#2)
+
+	:def csb17#2 = :ctf [enc(gk(P0#Prin), R@Rand || P#Prin) \in knl(S#Sys)  .]
+
+	:apply(csb17#2)
+
+	:def csb18#2 = :ctf [R@Rand \in urand(S#Sys)  .]
+
+	:apply(csb18#2)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb19#2 = :ctf [msg2(intru, P#Prin, P0#Prin, enc(gk(P0#Prin), R@Rand || P#Prin)) \in nw(S#Sys)  .]
+
+	:apply(csb19#2)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:imp [iff3]  by {P0:Prin <- P#Prin ; P:Prin <- P0#Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb20#2 = :ctf [D#Data \in knl(S#Sys)  .]
+
+	:apply(csb20#2)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb21#2 = :ctf [D#Data \in knl(S#Sys)  .]
+
+	:apply(csb21#2)
+
+	:imp [iff1]  by {R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff1]  by {R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb22#2 = :ctf [D#Data \in knl(S#Sys)  .]
+
+	:apply(csb22#2)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb23#2 = :ctf [D#Data \in knl(S#Sys)  .]
+
+	:apply(csb23#2)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:def csb24#2 = :ctf [D#Data \in knl(S#Sys)  .]
+
+	:apply(csb24#2)
+
+	:imp [iff6]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff6]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb25#2 = :ctf [D#Data \in knl(S#Sys)  .]
+
+	:apply(csb25#2)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb26#2 = :ctf [D#Data \in knl(S#Sys)  .]
+
+	:apply(csb26#2)
+
+	:imp [iff]  by {P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:imp [iff]  by {P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:def csb27#2 = :ctf [D#Data \in knl(S#Sys)  .]
+
+	:apply(csb27#2)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+
+:sel(8)
+	:apply(tc)
+
+	:def csb1#8 = :ctf [R#Rand \in urand(S#Sys)  .]
+
+	:apply(csb1#8)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb2#8 = :ctf {eq P@Prin  = P#Prin .}
+
+	:apply(csb2#8)
+
+	:def csb3#8 = :ctf {eq P1@Prin  = intru .}
+
+	:apply(csb3#8)
+
+	:def csb4#8 = :ctf {eq P0#Prin  = intru .}
+
+	:apply(csb4#8)
+
+	:def csb5#8 = :ctf {eq R@Rand  = R#Rand .}
+
+	:apply(csb5#8)
+
+	:def csb6#8 = :ctf {eq P#Prin  = intru .}
+
+	:apply(csb6#8)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb7#8 = :ctf {eq D@Data  = enc(gk(P#Prin), R#Rand || intru) .}
+
+	:apply(csb7#8)
+
+	:def csb8#8 = :ctf [msg1(P#Prin, P#Prin, intru, R#Rand) \in nw(S#Sys)  .]
+
+	:apply(csb8#8)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb9#8 = :ctf [msg2(P0@Prin, intru, P#Prin, enc(gk(P#Prin), R#Rand || intru)) \in nw(S#Sys)  .]
+
+	:apply(csb9#8)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- intru ; P:Prin <- P#Prin ; R:Rand <- R#Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb10#8 = :ctf [R#Rand \in urand(S#Sys)  .]
+
+	:apply(csb10#8)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb11#8 = :ctf [R#Rand \in urand(S#Sys)  .]
+
+	:apply(csb11#8)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb12#8 = :ctf [R#Rand \in urand(S#Sys)  .]
+
+	:apply(csb12#8)
+
+	:imp [iff1]  by {R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff1]  by {R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb13#8 = :ctf [R#Rand \in urand(S#Sys)  .]
+
+	:apply(csb13#8)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb14#8 = :ctf [R#Rand \in urand(S#Sys)  .]
+
+	:apply(csb14#8)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:def csb15#8 = :ctf [D@DataL \in knl(S#Sys)  .]
+
+	:apply(csb15#8)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:def csb16#8 = :ctf [R#Rand \in urand(S#Sys)  .]
+
+	:apply(csb16#8)
+
+	:imp [iff6]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff6]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb17#8 = :ctf [R#Rand \in urand(S#Sys)  .]
+
+	:apply(csb17#8)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb18#8 = :ctf [R#Rand \in urand(S#Sys)  .]
+
+	:apply(csb18#8)
+
+	:imp [iff]  by {P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:imp [iff]  by {P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:def csb19#8 = :ctf [R#Rand \in urand(S#Sys)  .]
+
+	:apply(csb19#8)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:def csb20#8 = :ctf [D@DataL \in knl(S#Sys)  .]
+
+	:apply(csb20#8)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+
+:sel(3)
+	:apply(tc)
+
+	:def csb1#3 = :ctf [K#Key \in knl(S#Sys)  .]
+
+	:apply(csb1#3)
+
+	:def csb2#3 = :ctf [D#DataL \in knl(S#Sys)  .]
+
+	:apply(csb2#3)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb3#3 = :ctf [K#Key \in knl(S#Sys)  .]
+
+	:apply(csb3#3)
+
+	:def csb4#3 = :ctf [D#DataL \in knl(S#Sys)  .]
+
+	:apply(csb4#3)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb5#3 = :ctf [K#Key \in knl(S#Sys)  .]
+
+	:apply(csb5#3)
+
+	:def csb6#3 = :ctf [D#DataL \in knl(S#Sys)  .]
+
+	:apply(csb6#3)
+
+	:def csb7#3 = :ctf {eq K#Key  = gk(P@Prin) .}
+
+	:apply(csb7#3)
+
+	:def csb8#3 = :ctf [gk(P@Prin) \in knl(S#Sys)  .]
+
+	:apply(csb8#3)
+
+	:def csb9#3 = :ctf {eq D#DataL  = R@Rand || P0@Prin .}
+
+	:apply(csb9#3)
+
+	:def csb10#3 = :ctf [P0@Prin \in knl(S#Sys)  .]
+
+	:apply(csb10#3)
+
+	:def csb11#3 = :ctf [R@Rand \in knl(S#Sys)  .]
+
+	:apply(csb11#3)
+
+	:def csb12#3 = :ctf [R@Rand \in urand(S#Sys)  .]
+
+	:apply(csb12#3)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb13#3 = :ctf [enc(gk(P@Prin), R@Rand || P0@Prin) \in knl(S#Sys)  .]
+
+	:apply(csb13#3)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:imp [iff1]  by {R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb14#3 = :ctf [K#Key \in knl(S#Sys)  .]
+
+	:apply(csb14#3)
+
+	:def csb15#3 = :ctf [D#DataL \in knl(S#Sys)  .]
+
+	:apply(csb15#3)
+
+	:imp [iff1]  by {R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff1]  by {R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff1]  by {R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb16#3 = :ctf [K#Key \in knl(S#Sys)  .]
+
+	:apply(csb16#3)
+
+	:def csb17#3 = :ctf [D#DataL \in knl(S#Sys)  .]
+
+	:apply(csb17#3)
+
+	:def csb18#3 = :ctf {eq D@DataL  = D#DataL .}
+
+	:apply(csb18#3)
+
+	:def csb19#3 = :ctf {eq K@Key  = K#Key .}
+
+	:apply(csb19#3)
+
+	:def csb20#3 = :ctf [R@Rand \in D#DataL  .]
+
+	:apply(csb20#3)
+
+	:def csb21#3 = :ctf [R@Rand \in urand(S#Sys)  .]
+
+	:apply(csb21#3)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb22#3 = :ctf [enc(K#Key, D#DataL) \in knl(S#Sys)  .]
+
+	:apply(csb22#3)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb23#3 = :ctf [R@Rand \in knl(S#Sys)  .]
+
+	:apply(csb23#3)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:imp [iff1]  by {R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:imp [proven-goal0]  by {D:Data <- R@Rand ; DL:DataL <- D#DataL ; DL2:DataL <- knl(S#Sys) ;}
+
+	:apply (rd)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb24#3 = :ctf [K#Key \in knl(S#Sys)  .]
+
+	:apply(csb24#3)
+
+	:def csb25#3 = :ctf [D#DataL \in knl(S#Sys)  .]
+
+	:apply(csb25#3)
+
+	:def csb26#3 = :ctf {eq D@DataL  = D#DataL .}
+
+	:apply(csb26#3)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:def csb27#3 = :ctf [D@DataL \in knl(S#Sys)  .]
+
+	:apply(csb27#3)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:def csb28#3 = :ctf [K#Key \in knl(S#Sys)  .]
+
+	:apply(csb28#3)
+
+	:def csb29#3 = :ctf [D#DataL \in knl(S#Sys)  .]
+
+	:apply(csb29#3)
+
+	:imp [iff6]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff6]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff6]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb30#3 = :ctf [K#Key \in knl(S#Sys)  .]
+
+	:apply(csb30#3)
+
+	:def csb31#3 = :ctf [D#DataL \in knl(S#Sys)  .]
+
+	:apply(csb31#3)
+
+	:def csb32#3 = :ctf {eq P@Prin  = intru .}
+
+	:apply(csb32#3)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb33#3 = :ctf {eq K#Key  = gk(P@Prin) .}
+
+	:apply(csb33#3)
+
+	:def csb34#3 = :ctf [gk(P@Prin) \in knl(S#Sys)  .]
+
+	:apply(csb34#3)
+
+	:def csb35#3 = :ctf {eq D#DataL  = R@Rand || intru .}
+
+	:apply(csb35#3)
+
+	:def csb36#3 = :ctf [intru \in knl(S#Sys)  .]
+
+	:apply(csb36#3)
+
+	:def csb37#3 = :ctf [R@Rand \in knl(S#Sys)  .]
+
+	:apply(csb37#3)
+
+	:def csb38#3 = :ctf [enc(gk(P@Prin), R@Rand || intru) \in knl(S#Sys)  .]
+
+	:apply(csb38#3)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:imp [iff]  by {P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb39#3 = :ctf [K#Key \in knl(S#Sys)  .]
+
+	:apply(csb39#3)
+
+	:def csb40#3 = :ctf [D#DataL \in knl(S#Sys)  .]
+
+	:apply(csb40#3)
+
+	:imp [iff]  by {P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:imp [iff]  by {P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:imp [iff]  by {P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:def csb41#3 = :ctf [K#Key \in knl(S#Sys)  .]
+
+	:apply(csb41#3)
+
+	:def csb42#3 = :ctf [D#DataL \in knl(S#Sys)  .]
+
+	:apply(csb42#3)
+
+	:def csb43#3 = :ctf {eq D@DataL  = D#DataL .}
+
+	:apply(csb43#3)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:def csb44#3 = :ctf [D@DataL \in knl(S#Sys)  .]
+
+	:apply(csb44#3)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+
+:sel(4)
+	:apply(tc)
+
+	:def csb1#4 = :ctf [K#Key \in knl(S#Sys)  .]
+
+	:apply(csb1#4)
+
+	:def csb2#4 = :ctf [enc(K#Key, D#DataL) \in knl(S#Sys)  .]
+
+	:apply(csb2#4)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb3#4 = :ctf [K#Key \in knl(S#Sys)  .]
+
+	:apply(csb3#4)
+
+	:def csb4#4 = :ctf [enc(K#Key, D#DataL) \in knl(S#Sys)  .]
+
+	:apply(csb4#4)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb5#4 = :ctf [K#Key \in knl(S#Sys)  .]
+
+	:apply(csb5#4)
+
+	:def csb6#4 = :ctf [enc(K#Key, D#DataL) \in knl(S#Sys)  .]
+
+	:apply(csb6#4)
+
+	:def csb7#4 = :ctf [R@Rand \in urand(S#Sys)  .]
+
+	:apply(csb7#4)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb8#4 = :ctf [enc(gk(P@Prin), R@Rand || P0@Prin) \in D#DataL  .]
+
+	:apply(csb8#4)
+
+	:def csb9#4 = :ctf [enc(gk(P@Prin), R@Rand || P0@Prin) \in knl(S#Sys)  .]
+
+	:apply(csb9#4)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb10#4 = :ctf [D#DataL \in knl(S#Sys)  .]
+
+	:apply(csb10#4)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:imp [proven-goal0]  by {DL:DataL <- D#DataL ; D:Data <- enc(gk(P@Prin), _||_(R@Rand, P0@Prin)) ; DL2:DataL <- knl(S#Sys) ;}
+
+	:apply (rd)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:imp [iff8]  by {D:DataL <- D#DataL ; K:Key <- K#Key ; D0:DataL <- _||_(R@Rand, P0@Prin) ; K0:Key <- gk(P@Prin) ;}
+
+	:apply (rd)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb11#4 = :ctf [K#Key \in knl(S#Sys)  .]
+
+	:apply(csb11#4)
+
+	:def csb12#4 = :ctf [enc(K#Key, D#DataL) \in knl(S#Sys)  .]
+
+	:apply(csb12#4)
+
+	:def csb13#4 = :ctf [R@Rand \in D#DataL  .]
+
+	:apply(csb13#4)
+
+	:def csb14#4 = :ctf [R@Rand \in knl(S#Sys)  .]
+
+	:apply(csb14#4)
+
+	:imp [iff1]  by {R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb15#4 = :ctf [R@Rand \in urand(S#Sys)  .]
+
+	:apply(csb15#4)
+
+	:imp [iff1]  by {R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff1]  by {R:Rand <- R@Rand ;}
+
+	:imp [iff5]  by {D:DataL <- D#DataL ; K:Key <- K#Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff1]  by {R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff1]  by {R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff1]  by {R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb16#4 = :ctf [K#Key \in knl(S#Sys)  .]
+
+	:apply(csb16#4)
+
+	:def csb17#4 = :ctf [enc(K#Key, D#DataL) \in knl(S#Sys)  .]
+
+	:apply(csb17#4)
+
+	:def csb18#4 = :ctf [R@Rand \in D@DataL  .]
+
+	:apply(csb18#4)
+
+	:def csb19#4 = :ctf [enc(K@Key, D@DataL) \in D#DataL  .]
+
+	:apply(csb19#4)
+
+	:def csb20#4 = :ctf [R@Rand \in urand(S#Sys)  .]
+
+	:apply(csb20#4)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb21#4 = :ctf [enc(K@Key, D@DataL) \in knl(S#Sys)  .]
+
+	:apply(csb21#4)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb22#4 = :ctf [D#DataL \in knl(S#Sys)  .]
+
+	:apply(csb22#4)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:imp [proven-goal0]  by {DL:DataL <- D#DataL ; D:Data <- enc(K@Key, D@DataL) ; DL2:DataL <- knl(S#Sys) ;}
+
+	:apply (rd)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:imp [iff8]  by {D0:DataL <- D@DataL ; D:DataL <- D#DataL ; K0:Key <- K@Key ; K:Key <- K#Key ;}
+
+	:apply (rd)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb23#4 = :ctf [K#Key \in knl(S#Sys)  .]
+
+	:apply(csb23#4)
+
+	:def csb24#4 = :ctf [enc(K#Key, D#DataL) \in knl(S#Sys)  .]
+
+	:apply(csb24#4)
+
+	:def csb25#4 = :ctf [enc(K@Key, D@DataL) \in D#DataL  .]
+
+	:apply(csb25#4)
+
+	:def csb26#4 = :ctf [enc(K0@Key, D0@DataL) \in D@DataL  .]
+
+	:apply(csb26#4)
+
+	:def csb27#4 = :ctf [D@DataL \in knl(S#Sys)  .]
+
+	:apply(csb27#4)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:def csb28#4 = :ctf [D@DataL \in D#DataL || knl(S#Sys)  .]
+
+	:apply(csb28#4)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:def csb29#4 = :ctf [enc(K@Key, D@DataL) \in knl(S#Sys)  .]
+
+	:apply(csb29#4)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:def csb30#4 = :ctf [D#DataL \in knl(S#Sys)  .]
+
+	:apply(csb30#4)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:imp [proven-goal0]  by {DL:DataL <- D#DataL ; D:Data <- enc(K@Key, D@DataL) ; DL2:DataL <- knl(S#Sys) ;}
+
+	:apply (rd)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:imp [iff8]  by {D0:DataL <- D@DataL ; D:DataL <- D#DataL ; K0:Key <- K@Key ; K:Key <- K#Key ;}
+
+	:apply (rd)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:def csb31#4 = :ctf [D@DataL \in knl(S#Sys)  .]
+
+	:apply(csb31#4)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:def csb32#4 = :ctf [K#Key \in knl(S#Sys)  .]
+
+	:apply(csb32#4)
+
+	:def csb33#4 = :ctf [enc(K#Key, D#DataL) \in knl(S#Sys)  .]
+
+	:apply(csb33#4)
+
+	:imp [iff6]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff6]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff6]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb34#4 = :ctf [K#Key \in knl(S#Sys)  .]
+
+	:apply(csb34#4)
+
+	:def csb35#4 = :ctf [enc(K#Key, D#DataL) \in knl(S#Sys)  .]
+
+	:apply(csb35#4)
+
+	:def csb36#4 = :ctf {eq P@Prin  = intru .}
+
+	:apply(csb36#4)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb37#4 = :ctf [enc(gk(P@Prin), R@Rand || intru) \in D#DataL  .]
+
+	:apply(csb37#4)
+
+	:def csb38#4 = :ctf [enc(gk(P@Prin), R@Rand || intru) \in knl(S#Sys)  .]
+
+	:apply(csb38#4)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb39#4 = :ctf [D#DataL \in knl(S#Sys)  .]
+
+	:apply(csb39#4)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:imp [proven-goal0]  by {DL:DataL <- D#DataL ; D:Data <- enc(gk(P@Prin), _||_(R@Rand, intru)) ; DL2:DataL <- knl(S#Sys) ;}
+
+	:apply (rd)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:imp [iff8]  by {D:DataL <- D#DataL ; K:Key <- K#Key ; D0:DataL <- _||_(R@Rand, intru) ; K0:Key <- gk(P@Prin) ;}
+
+	:apply (rd)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb40#4 = :ctf [K#Key \in knl(S#Sys)  .]
+
+	:apply(csb40#4)
+
+	:def csb41#4 = :ctf [enc(K#Key, D#DataL) \in knl(S#Sys)  .]
+
+	:apply(csb41#4)
+
+	:def csb42#4 = :ctf {eq P@Prin  = intru .}
+
+	:apply(csb42#4)
+
+	:imp [iff]  by {P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:def csb43#4 = :ctf [gk(P@Prin) \in D#DataL  .]
+
+	:apply(csb43#4)
+
+	:def csb44#4 = :ctf [gk(P@Prin) \in knl(S#Sys)  .]
+
+	:apply(csb44#4)
+
+	:imp [iff]  by {P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:def csb45#4 = :ctf [D#DataL \in knl(S#Sys)  .]
+
+	:apply(csb45#4)
+
+	:imp [iff]  by {P:Prin <- P@Prin ;}
+
+	:imp [proven-goal0]  by {DL:DataL <- D#DataL ; D:Data <- gk(P@Prin) ; DL2:DataL <- knl(S#Sys) ;}
+
+	:apply (rd)
+
+	:imp [iff]  by {P:Prin <- P@Prin ;}
+
+	:imp [iff4]  by {D:DataL <- D#DataL ; K:Key <- K#Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:imp [iff]  by {P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:imp [iff]  by {P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:imp [iff]  by {P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:def csb46#4 = :ctf [K#Key \in knl(S#Sys)  .]
+
+	:apply(csb46#4)
+
+	:def csb47#4 = :ctf [enc(K#Key, D#DataL) \in knl(S#Sys)  .]
+
+	:apply(csb47#4)
+
+	:def csb48#4 = :ctf [gk(P@Prin) \in D@DataL  .]
+
+	:apply(csb48#4)
+
+	:def csb49#4 = :ctf [D@DataL \in knl(S#Sys)  .]
+
+	:apply(csb49#4)
+
+	:def csb50#4 = :ctf [enc(K@Key, D@DataL) \in D#DataL  .]
+
+	:apply(csb50#4)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:def csb51#4 = :ctf [enc(K@Key, D@DataL) \in D#DataL  .]
+
+	:apply(csb51#4)
+
+	:def csb52#4 = :ctf [D@DataL \in D#DataL || knl(S#Sys)  .]
+
+	:apply(csb52#4)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:def csb53#4 = :ctf [enc(K@Key, D@DataL) \in knl(S#Sys)  .]
+
+	:apply(csb53#4)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:def csb54#4 = :ctf [D#DataL \in knl(S#Sys)  .]
+
+	:apply(csb54#4)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:imp [proven-goal0]  by {DL:DataL <- D#DataL ; D:Data <- enc(K@Key, D@DataL) ; DL2:DataL <- knl(S#Sys) ;}
+
+	:apply (rd)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:imp [iff8]  by {D0:DataL <- D@DataL ; D:DataL <- D#DataL ; K0:Key <- K@Key ; K:Key <- K#Key ;}
+
+	:apply (rd)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+
+:sel(9)
+	:apply(tc)
+
+	:def csb1#9 = :ctf [msg1(P#Prin, P0#Prin, P1#Prin, R#Rand) \in nw(S#Sys)  .]
+
+	:apply(csb1#9)
+
+	:def csb2#9 = :ctf {eq P@Prin  = P0#Prin .}
+
+	:apply(csb2#9)
+
+	:def csb3#9 = :ctf {eq P1@Prin  = intru .}
+
+	:apply(csb3#9)
+
+	:def csb4#9 = :ctf {eq P0@Prin  = P1#Prin .}
+
+	:apply(csb4#9)
+
+	:def csb5#9 = :ctf {eq P1#Prin  = intru .}
+
+	:apply(csb5#9)
+
+	:def csb6#9 = :ctf [msg1(P#Prin, P0#Prin, intru, R#Rand) \in nw(S#Sys)  .]
+
+	:apply(csb6#9)
+
+	:def csb7#9 = :ctf {eq P0#Prin  = intru .}
+
+	:apply(csb7#9)
+
+	:def csb8#9 = :ctf [msg1(P#Prin, intru, intru, R#Rand) \in nw(S#Sys)  .]
+
+	:apply(csb8#9)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb9#9 = :ctf {eq D@Data  = enc(gk(intru), R#Rand || intru) .}
+
+	:apply(csb9#9)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff9]  by {D:Data <- D@Data ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb10#9 = :ctf [msg1(P#Prin, P0#Prin, P1#Prin, R#Rand) \in nw(S#Sys)  .]
+
+	:apply(csb10#9)
+
+	:def csb11#9 = :ctf {eq P@Prin  = P0#Prin .}
+
+	:apply(csb11#9)
+
+	:def csb12#9 = :ctf {eq P1@Prin  = P1#Prin .}
+
+	:apply(csb12#9)
+
+	:def csb13#9 = :ctf {eq P0@Prin  = P1#Prin .}
+
+	:apply(csb13#9)
+
+	:def csb14#9 = :ctf {eq R@Rand  = R#Rand .}
+
+	:apply(csb14#9)
+
+	:def csb15#9 = :ctf [R#Rand \in urand(S#Sys)  .]
+
+	:apply(csb15#9)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb16#9 = :ctf {eq P0#Prin  = intru .}
+
+	:apply(csb16#9)
+
+	:def csb17#9 = :ctf [msg1(P#Prin, intru, P1#Prin, R#Rand) \in nw(S#Sys)  .]
+
+	:apply(csb17#9)
+
+	:def csb18#9 = :ctf {eq P1#Prin  = intru .}
+
+	:apply(csb18#9)
+
+	:def csb19#9 = :ctf [msg1(P#Prin, intru, intru, R#Rand) \in nw(S#Sys)  .]
+
+	:apply(csb19#9)
+
+	:def csb20#9 = :ctf [msg2(intru, intru, intru, enc(gk(intru), R#Rand || intru)) \in nw(S#Sys)  .]
+
+	:apply(csb20#9)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:imp [iff6]  by {P0:Prin <- P#Prin ; P1:Prin <- intru ; P:Prin <- intru ; R:Rand <- R#Rand ;}
+
+	:apply (rd)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb21#9 = :ctf {eq P1#Prin  = intru .}
+
+	:apply(csb21#9)
+
+	:def csb22#9 = :ctf [msg1(P#Prin, P0#Prin, intru, R#Rand) \in nw(S#Sys)  .]
+
+	:apply(csb22#9)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb23#9 = :ctf [msg2(P1#Prin, P1#Prin, P0#Prin, enc(gk(P0#Prin), R#Rand || P1#Prin)) \in nw(S#Sys)  .]
+
+	:apply(csb23#9)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:imp [iff6]  by {P0:Prin <- P#Prin ; P1:Prin <- P0#Prin ; P:Prin <- P1#Prin ; R:Rand <- R#Rand ;}
+
+	:apply (rd)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff7]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb24#9 = :ctf [msg1(P#Prin, P0#Prin, P1#Prin, R#Rand) \in nw(S#Sys)  .]
+
+	:apply(csb24#9)
+
+	:def csb25#9 = :ctf {eq P0@Prin  = P1#Prin .}
+
+	:apply(csb25#9)
+
+	:def csb26#9 = :ctf {eq R@Rand  = R#Rand .}
+
+	:apply(csb26#9)
+
+	:def csb27#9 = :ctf [R#Rand \in urand(S#Sys)  .]
+
+	:apply(csb27#9)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb28#9 = :ctf {eq P@Prin  = intru .}
+
+	:apply(csb28#9)
+
+	:def csb29#9 = :ctf {eq P1#Prin  = intru .}
+
+	:apply(csb29#9)
+
+	:def csb30#9 = :ctf [msg1(P#Prin, P0#Prin, intru, R#Rand) \in nw(S#Sys)  .]
+
+	:apply(csb30#9)
+
+	:def csb31#9 = :ctf [enc(gk(intru), R#Rand || intru) \in knl(S#Sys)  .]
+
+	:apply(csb31#9)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:imp [iff6]  by {P0:Prin <- P#Prin ; P1:Prin <- P0#Prin ; P:Prin <- intru ; R:Rand <- R#Rand ;}
+
+	:apply (rd)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb32#9 = :ctf {eq P1#Prin  = intru .}
+
+	:apply(csb32#9)
+
+	:def csb33#9 = :ctf [msg1(P#Prin, P0#Prin, intru, R#Rand) \in nw(S#Sys)  .]
+
+	:apply(csb33#9)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb34#9 = :ctf [enc(gk(P@Prin), R#Rand || P1#Prin) \in knl(S#Sys)  .]
+
+	:apply(csb34#9)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:imp [iff6]  by {P0:Prin <- P#Prin ; P1:Prin <- P0#Prin ; P:Prin <- P1#Prin ; R:Rand <- R#Rand ;}
+
+	:apply (rd)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff3]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb35#9 = :ctf [msg1(P#Prin, P0#Prin, P1#Prin, R#Rand) \in nw(S#Sys)  .]
+
+	:apply(csb35#9)
+
+	:imp [iff1]  by {R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff1]  by {R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb36#9 = :ctf [msg1(P#Prin, P0#Prin, P1#Prin, R#Rand) \in nw(S#Sys)  .]
+
+	:apply(csb36#9)
+
+	:def csb37#9 = :ctf {eq D@DataL  = R#Rand || P1#Prin .}
+
+	:apply(csb37#9)
+
+	:def csb38#9 = :ctf {eq R@Rand  = R#Rand .}
+
+	:apply(csb38#9)
+
+	:def csb39#9 = :ctf {eq K@Key  = gk(P1#Prin) .}
+
+	:apply(csb39#9)
+
+	:def csb40#9 = :ctf [R#Rand \in urand(S#Sys)  .]
+
+	:apply(csb40#9)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb41#9 = :ctf [enc(gk(P1#Prin), R#Rand || P1#Prin) \in knl(S#Sys)  .]
+
+	:apply(csb41#9)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:imp [iff6]  by {P0:Prin <- P#Prin ; P1:Prin <- P0#Prin ; P:Prin <- P1#Prin ; R:Rand <- R#Rand ;}
+
+	:apply (rd)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff5]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb42#9 = :ctf [msg1(P#Prin, P0#Prin, P1#Prin, R#Rand) \in nw(S#Sys)  .]
+
+	:apply(csb42#9)
+
+	:def csb43#9 = :ctf {eq D@DataL  = R#Rand || P1#Prin .}
+
+	:apply(csb43#9)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:def csb44#9 = :ctf [D@DataL \in knl(S#Sys)  .]
+
+	:apply(csb44#9)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:imp [iff8]  by {D0:DataL <- D0@DataL ; D:DataL <- D@DataL ; K0:Key <- K0@Key ; K:Key <- K@Key ;}
+
+	:apply (rd)
+
+	:def csb45#9 = :ctf [msg1(P#Prin, P0#Prin, P1#Prin, R#Rand) \in nw(S#Sys)  .]
+
+	:apply(csb45#9)
+
+	:imp [iff6]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff6]  by {P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb46#9 = :ctf [msg1(P#Prin, P0#Prin, P1#Prin, R#Rand) \in nw(S#Sys)  .]
+
+	:apply(csb46#9)
+
+	:def csb47#9 = :ctf {eq P1#Prin  = intru .}
+
+	:apply(csb47#9)
+
+	:def csb48#9 = :ctf [msg1(P#Prin, P0#Prin, intru, R#Rand) \in nw(S#Sys)  .]
+
+	:apply(csb48#9)
+
+	:def csb49#9 = :ctf {eq R@Rand  = R#Rand .}
+
+	:apply(csb49#9)
+
+	:def csb50#9 = :ctf {eq P@Prin  = intru .}
+
+	:apply(csb50#9)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [iff2]  by {P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb51#9 = :ctf [msg1(P#Prin, P0#Prin, P1#Prin, R#Rand) \in nw(S#Sys)  .]
+
+	:apply(csb51#9)
+
+	:imp [iff]  by {P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:imp [iff]  by {P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:def csb52#9 = :ctf [msg1(P#Prin, P0#Prin, P1#Prin, R#Rand) \in nw(S#Sys)  .]
+
+	:apply(csb52#9)
+
+	:def csb53#9 = :ctf {eq D@DataL  = R#Rand || P1#Prin .}
+
+	:apply(csb53#9)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:def csb54#9 = :ctf [D@DataL \in knl(S#Sys)  .]
+
+	:apply(csb54#9)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+
+	:imp [iff4]  by {D:DataL <- D@DataL ; K:Key <- K@Key ; P:Prin <- P@Prin ;}
+
+	:apply (rd)
+

@@ -1,0 +1,18 @@
+load iff.cafe . 
+load proof-scripts/prsc.cafe .
+
+set-cores 4 .
+
+:proven(lm1(D:Data, DL:DataL, DL2:DataL))
+:infer-proof iff .
+
+set-output proof-scripts/scripts-generated.cafe .
+:save-proof .
+
+eof
+
+load proof-scripts/input.cafe .
+
+EXP
+start  at    Wed Sep  6 22:38:00 2023
+finish at    09/06/2023 22:57:43
