@@ -1,0 +1,12 @@
+load iff.cafe .
+
+ipsgopen IFF .
+  
+close
+
+-- set-output proof-scores.cafe .
+-- :save-proof .
+
+eof
+
+load input.cafe .

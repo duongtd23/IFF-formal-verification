@@ -1,0 +1,240 @@
+-- Each principal belongs to one group
+-- A symmetric key is given to each group, whose members share the key
+-- When A wants to check if B is a member of the A's group,
+-- the two following messages will be exchanged:
+-- A -> B : R
+-- B -> A : senc(K, R || B)
+
+mod* PRINCIPAL {
+  [Prin]
+  op intru : -> Prin {constr}      -- intruder
+}
+mod* KEY {
+  pr(PRINCIPAL)
+  [Key]
+  op k : Prin -> Key
+  vars P P2 : Prin
+  vars K K2 : Key
+  ceq (k(P) = k(intru)) = false if not(P = intru) .
+  ceq (k(P) = k(P2)) = true if not(P = intru) and not(P2 = intru) .
+}
+mod* RANDOM {
+  [Rand]
+}
+mod! DATA {
+  pr(PRINCIPAL + KEY + RANDOM)
+  [Data < DataL]
+  [Prin Key Rand < Data]
+  op _||_ : DataL DataL -> DataL {assoc r-assoc constr}
+
+  op _\in_ : DataL DataL -> Bool
+
+  vars D1 D2 : Data
+  vars DL DL2 DL3 : DataL
+  var P : Prin
+  var K : Key
+  var R : Rand
+
+  eq (D1 = (D2 || DL2)) = false .
+  eq ((D1 || DL) = (D2 || DL2)) 
+      = (D1 = D2 and DL = DL2) .
+
+  eq (D1 || DL) \in D2 = false .
+  eq (D1 || DL) \in DL2 = (D1 \in DL2 and DL \in DL2) .
+  eq D1 \in D2 = (D1 = D2) .
+  eq D1 \in (D2 || DL2) = (D1 = D2 or D1 \in DL2) .
+
+  ceq (P = D1)  = false if (D1 :is Key) or 
+                           (D1 :is Rand) .
+  ceq (K = D1)  = false if (D1 :is Prin) or 
+                           (D1 :is Rand) .
+  ceq (R = D1)  = false if (D1 :is Prin) or 
+                           (D1 :is Key) .
+
+-- lemmas
+  eq D1 \in (DL2 || DL3) = D1 \in DL2 or D1 \in DL3 .
+  ceq DL \in (DL2 || DL3) = true if DL \in DL3 .
+}
+mod! ENCRYPTION {
+  pr(DATA)
+  
+--         Key   Plaintext     Ciphertext
+  op enc : Data  DataL      -> Data {constr}
+--         Key   Ciphertext    Plaintext
+  op dec : Data  Data       -> DataL
+
+  vars A B : Prin 
+  vars KE KE2 D D2 : Data
+  vars DL DL2 : DataL
+  vars K : Key
+  vars R : Rand
+
+  eq dec(K, enc(K,DL)) = DL .
+  eq (dec(K, D2) = DL) = (D2 = enc(K,DL)) .
+  ceq (dec(KE, D) = DL2) = false 
+    if (KE :is Prin) or (KE :is Rand) .
+
+  eq (enc(KE,DL) = enc(KE2,DL2)) = (KE = KE2 and DL = DL2) .
+  ceq (enc(KE,DL) = D) = false if (D :is Prin) or 
+                                   (D :is Rand) .
+}
+mod! MESSAGE {
+  pr(ENCRYPTION)
+  [Msg]
+  op msg1 : Prin Prin Prin DataL -> Msg {constr}
+  op msg2 : Prin Prin Prin DataL -> Msg {constr}
+ 
+  vars A B A2 B2 A' A2' : Prin 
+  vars D D2 : DataL 
+  eq (msg1(A',A,B,D) = msg1(A2',A2,B2,D2)) =
+    (A' = A2' and A = A2 and B = B2 and D = D2) .
+  eq (msg2(A',A,B,D) = msg2(A2',A2,B2,D2)) =
+    (A' = A2' and A = A2 and B = B2 and D = D2) .
+  eq (msg1(A',A,B,D) = msg2(A2',A2,B2,D2)) = false .
+}
+mod! SET (D :: TRIV) {
+  [Elt.D < Set]
+  op empty : -> Set {constr}
+  op __ : Set Set -> Set {assoc constr comm idem id: empty}
+  op _\in_ : Elt.D Set -> Bool
+  var S : Set
+  vars E1 E2 : Elt.D
+  eq E1 \in empty = false .
+  eq E1 \in E2 = (E1 = E2) .
+  eq E1 \in (E2 S) = (E1 = E2) or (E1 \in S) .
+}
+mod! BAG (D :: TRIV) {
+  [Elt.D < Bag]
+  op void : -> Bag {constr}
+  op _,_ : Bag Bag -> Bag {assoc constr comm id: void}
+  op _\in_ : Elt.D Bag -> Bool
+  var B : Bag
+  vars E1 E2 : Elt.D
+  eq E1 \in void = false .
+  eq E1 \in E2 = (E1 = E2) .
+  eq E1 \in (E2,B) = (E1 = E2) or (E1 \in B) .
+}
+view TRIV2MESSAGE from TRIV to MESSAGE {
+  sort Elt -> Msg
+}
+mod! NETWORK {
+  pr(BAG(D <= TRIV2MESSAGE)*{sort Bag -> Network})
+}
+view TRIV2DATA from TRIV to DATA {
+  sort Elt -> Data
+}
+mod* PROTOCOL {
+  pr(NETWORK)
+  pr(SET(D <= TRIV2DATA)*{sort Set -> RandSet})
+
+  [Sys]
+-- initial states
+  op init : -> Sys {constr}
+  op send1 : Sys Prin Prin Rand -> Sys {constr}
+  op send2 : Sys Prin Prin Prin Rand -> Sys {constr}
+
+  op nw : Sys -> Network
+  op urand : Sys -> RandSet
+  op knl : Sys -> DataL
+
+  var S : Sys
+  vars A B A2 B2 A3 B3 : Prin 
+  vars D D1 D2 : Data
+  vars K : Key
+  vars R R2 : Rand
+  vars DL DL2 : DataL
+
+  eq nw(init) = void .
+  eq urand(init) = empty .
+  eq knl(init) = k(intru) .
+
+  op c-send1 : Sys Rand -> Bool
+  eq c-send1(S,R) = not(R \in urand(S)) .
+  ceq nw(send1(S,A,B,R)) = 
+      (msg1(A,A,B, R) , nw(S)) 
+    if c-send1(S,R) .
+  ceq urand(send1(S,A,B,R)) = (R urand(S)) 
+    if c-send1(S,R) .
+  ceq knl(send1(S,A,B,R)) = (R || knl(S)) 
+    if c-send1(S,R) .
+  ceq send1(S,A,B,R) = S 
+    if not c-send1(S,R) .
+
+  op c-send2 : Sys Prin Prin Prin Rand -> Bool
+  eq c-send2(S,A2,A,B,R) = 
+    msg1(A2,A,B, R) \in nw(S) .
+  ceq nw(send2(S,A2,A,B,R)) = 
+      (msg2(B,B,A, enc(k(B), R || B)) , nw(S))
+    if c-send2(S,A2,A,B,R) .
+  eq urand(send2(S,A2,A,B,R)) = urand(S) .
+  ceq knl(send2(S,A2,A,B,R)) = 
+      (enc(k(B), R || B) || knl(S))
+    if c-send2(S,A2,A,B,R) .
+  ceq send2(S,A2,A,B,R) = S
+    if not c-send2(S,A2,A,B,R) .
+
+-- intruder capabilities
+-- selecting a random R by themself
+  op gRand : Sys Rand -> Sys {constr}
+  op c-gRand : Sys Rand -> Bool
+  eq c-gRand(S,R) = not(R \in urand(S)) .
+  eq nw(gRand(S,R)) = nw(S) .
+  ceq urand(gRand(S,R)) = (R urand(S))
+    if c-gRand(S,R) .
+  ceq knl(gRand(S,R)) = (R || knl(S))
+    if c-gRand(S,R) .
+  ceq gRand(S,R) = S 
+    if not c-gRand(S,R) .
+ 
+-- know all possible values of basic data types
+  op gBasic : Sys Prin -> Sys {constr}
+  eq nw(gBasic(S,A)) = nw(S) .
+  eq urand(gBasic(S,A)) = urand(S) .
+  eq knl(gBasic(S,A)) = (A || knl(S)) .
+
+  op g2 : Sys Data DataL -> Sys {constr}
+  op c-g2 : Sys Data DataL -> Bool
+  eq c-g2(S,D1,DL2) = (D1 \in knl(S) and DL2 \in knl(S)) .
+  eq nw(g2(S,D1,DL2)) = nw(S) .
+  eq urand(g2(S,D1,DL2)) = urand(S) .
+  ceq knl(g2(S,D1,DL2)) = 
+      (enc(D1,DL2) || knl(S)) 
+    if c-g2(S,D1,DL2) .
+  ceq g2(S,D1,DL2) = S if not c-g2(S,D1,DL2) .
+
+-- decryption capabilities
+  op g22 : Sys Data DataL -> Sys {constr}
+  op c-g22 : Sys Data DataL -> Bool
+  eq c-g22(S,D1,DL2) = (D1 \in knl(S) and enc(D1,DL2) \in knl(S)) .
+  eq nw(g22(S,D1,DL2)) = nw(S) .
+  eq urand(g22(S,D1,DL2)) = urand(S) .
+  ceq knl(g22(S,D1,DL2)) = (DL2 || knl(S)) 
+    if c-g22(S,D1,DL2) .
+  ceq g22(S,D1,DL2) = S if not c-g22(S,D1,DL2) .
+
+-- faking msg1 messages
+  op fkmsg1 : Sys Prin Prin Rand -> Sys {constr}
+  op c-fkmsg1 : Sys Prin Prin Rand -> Bool
+  eq c-fkmsg1(S,A,B,R) = 
+    (R \in knl(S)) .
+  ceq nw(fkmsg1(S,A,B,R)) = 
+      (msg1(intru,A,B, R) , nw(S))
+    if c-fkmsg1(S,A,B,R) .
+  eq urand(fkmsg1(S,A,B,R)) = urand(S) .
+  eq knl(fkmsg1(S,A,B,R)) = knl(S) .
+  ceq fkmsg1(S,A,B,R) = S 
+    if not c-fkmsg1(S,A,B,R) .
+
+-- faking msg2 messages
+  op fkmsg2 : Sys Prin Prin Data -> Sys {constr}
+  op c-fkmsg2 : Sys Prin Prin Data -> Bool
+  eq c-fkmsg2(S,A,B,D1) = 
+    (D1 \in knl(S)) .
+  ceq nw(fkmsg2(S,A,B,D1)) = 
+      (msg2(intru,A,B, D1) , nw(S))
+    if c-fkmsg2(S,A,B,D1) .
+  eq urand(fkmsg2(S,A,B,D1)) = urand(S) .
+  eq knl(fkmsg2(S,A,B,D1)) = knl(S) .
+  ceq fkmsg2(S,A,B,D1) = S 
+    if not c-fkmsg2(S,A,B,D1) .
+}
