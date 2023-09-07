@@ -26,8 +26,7 @@ mod! DATA {
   pr(PRINCIPAL + KEY + RANDOM)
   [Data < DataL]
   [Prin Key Rand < Data]
-  op _||_ : DataL DataL -> DataL {assoc r-assoc constr}
-
+  op _||_  : DataL DataL -> DataL {assoc r-assoc constr}
   op _\in_ : DataL DataL -> Bool
 
   vars D1 D2 : Data
@@ -58,7 +57,6 @@ mod! DATA {
 }
 mod! ENCRYPTION {
   pr(DATA)
-  
 --         Key  Plaintext     Ciphertext
   op enc : Key  DataL      -> Data {constr}
 --         Key  Ciphertext    Plaintext
@@ -255,7 +253,7 @@ mod PROPERTIES {
      msg2(B2,B,A, D) \in nw(S) and
      dec(gk(A), D) = R || B) .
 
--- 1+?
+-- 1+7
   op iden : Sys Prin Prin Prin Rand Data -> Bool
   eq iden(S,A,B,B2,R,D) = 
     (not(A = intru) and
@@ -321,6 +319,7 @@ mod PROPERTIES {
      gk(A) \in DL)
     implies DL \in knl(S) .
 
+-- we do not prove this lemma due to its trivial
   op lm1 : Data DataL DataL -> Bool
   eq lm1(D,DL,DL2) = (D \in DL and DL \in DL2)
     implies D \in DL2 .
