@@ -9,7 +9,7 @@ mod* PRINCIPAL {
   [Prin]
   op intru : -> Prin {constr}      -- intruder
 }
-mod* KEY {
+mod! KEY {
   pr(PRINCIPAL)
   [Key]
 -- group key of the principal
